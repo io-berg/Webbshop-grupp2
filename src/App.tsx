@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import AdminPage from "./pages/AdminPage";
+import EditPage from "./pages/EditPage";
 import HomePage from "./pages/HomePage";
 
 function App() {
@@ -12,8 +13,8 @@ function App() {
         <Route path="/" element={<CartPage />} /> */}
 
         <Route path="/admin" element={<AdminPage />} />
-        {/* <Route path="/" element={<CreatePage />} />
-        <Route path="/" element={<EditPage />} /> */}
+        {/* <Route path="/" element={<CreatePage />} />  */}
+        <Route path="/admin/:Id" element={<EditPage />} />
       </Routes>
     </Layout>
   );

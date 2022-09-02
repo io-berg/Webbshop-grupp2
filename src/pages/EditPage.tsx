@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useParams } from "react-router-dom";
+import ProductForm from "../components/ProductForm";
 
 const EditPage: FC = () => {
   const params = useParams<{ Id: string }>();
@@ -15,7 +16,7 @@ const EditPage: FC = () => {
   return (
     <div className="w-screen flex items-center flex-col">
       <h2 className="text-5xl font-extrabold"> Ändra Produkt</h2>
-      {/*Sätt in formulär component här*/}
+      <ProductForm />
     </div>
   );
 };

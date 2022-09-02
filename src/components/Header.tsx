@@ -7,7 +7,7 @@ interface Props {}
 
 const Header: FC<Props> = ({}) => {
   return (
-    <AppBar>
+    <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <div className="flex justify-between w-full">

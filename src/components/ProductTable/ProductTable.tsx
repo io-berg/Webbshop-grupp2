@@ -20,6 +20,7 @@ import {
 } from "@mui/material";
 import { FC, useState } from "react";
 import { Product } from "../../utils/types";
+import MobileRow from "./MobileRow";
 import SortableTableColumnHead from "./SortableTableColumnHead";
 
 interface Props {
@@ -27,6 +28,7 @@ interface Props {
   handleDelete: (product: Product) => void;
   handleEdit: (product: Product) => void;
   handleAdd: () => void;
+  mobile: boolean;
 }
 
 type SortByType = "id" | "name" | "price" | "amountInStock";
@@ -37,6 +39,7 @@ const ProductTable: FC<Props> = ({
   handleDelete,
   handleEdit,
   handleAdd,
+  mobile,
 }) => {
   const [sortBy, setSortBy] = useState<SortByType>("id");
   const [searchInput, setSearchInput] = useState("");
@@ -84,7 +87,7 @@ const ProductTable: FC<Props> = ({
                 labelId="searchType-label"
                 label="Search By"
                 color="primary"
-                sx={{ mr: 2 }}
+                sx={{ mr: 2, minWidth: 76, maxWidth: 90 }}
               >
                 <MenuItem value={"id"}>Id</MenuItem>
                 <MenuItem value={"name"}>Namn</MenuItem>
@@ -96,18 +99,22 @@ const ProductTable: FC<Props> = ({
               onChange={(e) => setSearchInput(e.target.value)}
               value={searchInput}
               placeholder="Sök"
+              size="small"
+              sx={{ width: 90 }}
             />
-            <Button
-              color="success"
-              variant="outlined"
-              sx={{ marginLeft: 2 }}
-              onClick={handleAdd}
-            >
-              Ny Produkt
-            </Button>
+            {mobile ? null : (
+              <Button
+                color="success"
+                variant="outlined"
+                sx={{ marginLeft: 2 }}
+                onClick={handleAdd}
+              >
+                Ny Produkt
+              </Button>
+            )}
           </div>
         </Toolbar>
-        <Table sx={{ minWidth: 650 }} size="small">
+        <Table sx={{ minWidth: 300 }} size="small">
           <TableHead>
             <TableRow>
               <SortableTableColumnHead
@@ -124,66 +131,75 @@ const ProductTable: FC<Props> = ({
                 onClick={() => handleSort("name")}
                 sortDirection={sortDirection}
               />
-              <TableCell>
-                <Typography variant="body2">BESKRIVNING</Typography>
-              </TableCell>
-              <SortableTableColumnHead
-                align="left"
-                text="Pris"
-                active={sortBy === "price"}
-                onClick={() => handleSort("price")}
-                sortDirection={sortDirection}
-              />
-              <SortableTableColumnHead
-                align="left"
-                text="Lager"
-                active={sortBy === "amountInStock"}
-                onClick={() => handleSort("amountInStock")}
-                sortDirection={sortDirection}
-              />
+              {mobile ? null : (
+                <>
+                  <TableCell>
+                    <Typography variant="body2">BESKRIVNING</Typography>
+                  </TableCell>
+                  <SortableTableColumnHead
+                    align="left"
+                    text="Pris"
+                    active={sortBy === "price"}
+                    onClick={() => handleSort("price")}
+                    sortDirection={sortDirection}
+                  />
+                  <SortableTableColumnHead
+                    align="left"
+                    text="Lager"
+                    active={sortBy === "amountInStock"}
+                    onClick={() => handleSort("amountInStock")}
+                    sortDirection={sortDirection}
+                  />
+                </>
+              )}
             </TableRow>
           </TableHead>
           <TableBody>
-            {ProcessProducts(Products).map((product, idx) => (
-              <TableRow
-                key={product.id}
-                sx={idx % 2 == 0 ? { backgroundColor: "#f9f9f9" } : {}}
-              >
-                <TableCell>{product.id}</TableCell>
-                <TableCell>{product.name}</TableCell>
-                <TableCell
-                  sx={{
-                    maxWidth: 500,
-                    minWidth: 0,
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}
+            {ProcessProducts(Products).map((product, idx) => {
+              if (mobile)
+                return (
+                  <MobileRow
+                    product={product}
+                    key={idx}
+                    handleDelete={handleDelete}
+                    handleEdit={handleEdit}
+                  />
+                );
+              return (
+                <TableRow
+                  key={product.id}
+                  sx={idx % 2 == 0 ? { backgroundColor: "#f9f9f9" } : {}}
                 >
-                  {product.description}
-                </TableCell>
-                <TableCell>{product.price}</TableCell>
-                <TableCell>{product.amountInStock}</TableCell>
-                <TableCell>
-                  <div className="flex">
-                    <Button
-                      color="info"
-                      size="small"
-                      onClick={() => handleEdit(product)}
-                    >
-                      <EditOutlinedIcon />
-                    </Button>
-                    <Button
-                      color="error"
-                      size="small"
-                      onClick={() => handleDelete(product)}
-                    >
-                      <DeleteForeverOutlinedIcon />
-                    </Button>
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
+                  <TableCell>{product.id}</TableCell>
+                  <TableCell>{product.name}</TableCell>
+                  <TableCell>
+                    <div className="flex w-200px nowrap text-ellipsis">
+                      {product.description}
+                    </div>
+                  </TableCell>
+                  <TableCell>{product.price}</TableCell>
+                  <TableCell>{product.amountInStock}</TableCell>
+                  <TableCell>
+                    <div className="flex">
+                      <Button
+                        color="info"
+                        size="small"
+                        onClick={() => handleEdit(product)}
+                      >
+                        <EditOutlinedIcon />
+                      </Button>
+                      <Button
+                        color="error"
+                        size="small"
+                        onClick={() => handleDelete(product)}
+                      >
+                        <DeleteForeverOutlinedIcon />
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>

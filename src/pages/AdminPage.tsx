@@ -1,9 +1,12 @@
+import AddIcon from "@mui/icons-material/Add";
 import {
   Button,
   Container,
   Dialog,
   DialogActions,
   DialogTitle,
+  Fab,
+  useMediaQuery,
 } from "@mui/material";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +18,7 @@ const AdminPage: FC = () => {
   const { products, removeProduct } = useProducts();
   const [productToDelete, setProductToDelete] = useState<Product | null>(null);
   const navigate = useNavigate();
+  const mobile = useMediaQuery("(max-width: 850px)");
 
   const handleClickDelete = (product: Product) => {
     setProductToDelete(product);
@@ -42,6 +46,7 @@ const AdminPage: FC = () => {
           handleDelete={handleClickDelete}
           handleEdit={handleClickEdit}
           handleAdd={handleClickAdd}
+          mobile={mobile}
         />
         <Dialog open={productToDelete !== null}>
           <DialogTitle>
@@ -60,6 +65,20 @@ const AdminPage: FC = () => {
           </DialogActions>
         </Dialog>
       </Container>
+      {mobile && (
+        <Fab
+          color="primary"
+          aria-label="add"
+          onClick={handleClickAdd}
+          sx={{
+            position: "absolute",
+            bottom: 34,
+            right: 10,
+          }}
+        >
+          <AddIcon />
+        </Fab>
+      )}
     </>
   );
 };

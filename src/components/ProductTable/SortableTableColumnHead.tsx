@@ -23,7 +23,13 @@ const SortableTableColumnHead: FC<Props> = ({
       <Button
         variant="text"
         size="small"
-        sx={{ display: "flex", justifyContent: "left", paddingLeft: 0 }}
+        sx={{
+          display: "flex",
+          justifyContent: "left",
+          paddingLeft: 0,
+          paddingRight: 0,
+          minWidth: 0,
+        }}
         onClick={onClick}
       >
         <Typography variant="body2" color={"black"} sx={{ marginLeft: "0px" }}>

@@ -67,7 +67,6 @@ const ProductTable: FC<Props> = ({
     } else {
       setSortBy(sortProperty);
     }
-    console.log("sortBy", sortBy);
   };
 
   return (

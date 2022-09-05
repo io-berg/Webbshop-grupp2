@@ -3,9 +3,11 @@ import { AppBar, Container, Toolbar, Typography } from "@mui/material";
 import { FC } from "react";
 import "../styles/header.css";
 
-interface Props {}
+interface Props {
+  admin?: boolean;
+}
 
-const Header: FC<Props> = ({}) => {
+const Header: FC<Props> = ({ admin }) => {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -27,7 +29,7 @@ const Header: FC<Props> = ({}) => {
             >
               BLOMMOR
             </Typography>
-            <ShoppingCartIcon />
+            {!admin ? <ShoppingCartIcon /> : null}
           </div>
         </Toolbar>
       </Container>

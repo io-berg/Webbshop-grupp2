@@ -1,3 +1,4 @@
+import { Container } from "@mui/material";
 import { FC } from "react";
 import { useParams } from "react-router-dom";
 import NavCrumbs from "../components/NavCrumbs";
@@ -13,7 +14,7 @@ const EditPage: FC = () => {
     return <p>Produkt med Id: {params.Id} finns inte.</p>;
   }
   return (
-    <div className="w-screen flex items-center flex-col">
+    <Container>
       <NavCrumbs
         crumbs={[
           { name: "Home", path: "/" },
@@ -23,7 +24,7 @@ const EditPage: FC = () => {
       />
       <h2 className="text-5xl font-extrabold m-4"> Ändra Produkt</h2>
       <ProductForm product={product} />
-    </div>
+    </Container>
   );
 };
 

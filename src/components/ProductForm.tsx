@@ -12,12 +12,16 @@ interface Props {
 type ProductRecord = Record<keyof ProductCreate, Yup.AnySchema>;
 
 const ProductSchema = Yup.object().shape<ProductRecord>({
-  name: Yup.string().min(1).required(),
-  price: Yup.number().required().min(0),
-  imgUrl: Yup.string().min(1).required(),
-  description: Yup.string().min(1).required(),
-  longDescription: Yup.string().min(1).required(),
-  amountInStock: Yup.number().min(0).required(),
+  name: Yup.string().min(1).required("Namn fårår inte vara blankt"),
+  price: Yup.number().required("Priset får inte vara negativt").min(0),
+  imgUrl: Yup.string().min(1).required("Bild länk får inte vara blank"),
+  description: Yup.string().min(1).required("Beskrivning får inte vara blank"),
+  longDescription: Yup.string()
+    .min(1)
+    .required("Längre beskrivning får inte vara blank"),
+  amountInStock: Yup.number()
+    .min(0)
+    .required("Lagersaldo får inte vara negativt"),
 });
 
 const ProductForm: FC<Props> = ({ product }) => {
@@ -61,38 +65,68 @@ const ProductForm: FC<Props> = ({ product }) => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4 w-1/4">
-      <TextField
-        label="Namn"
-        placeholder="name"
-        type="text"
-        name="name"
-        value={formik.values.name}
-        onBlur={formik.handleBlur}
-        onChange={formik.handleChange}
-      />
-      {formik.touched.name && formik.errors.name}
-      <TextField
-        label="Pris"
-        placeholder="price"
-        type="number"
-        name="price"
-        value={formik.values.price}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-      />
-      {formik.errors.price}
+    <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4 w-full">
+      <div className="flex flex-col w-full gap-4 sm:flex-row">
+        <div className="flex w-full flex-col">
+          <TextField
+            sx={{ width: "100%" }}
+            label="Namn"
+            placeholder="name"
+            type="text"
+            name="name"
+            value={formik.values.name}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+          />
+          <span className="text-red-500">
+            {formik.touched.name && formik.errors.name}
+          </span>
+        </div>
+        <div className="flex w-full flex-col">
+          <TextField
+            sx={{ width: "100%" }}
+            label="Pris i kronor"
+            placeholder="price"
+            type="number"
+            name="price"
+            value={formik.values.price}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <span className="text-red-500">{formik.errors.price}</span>
+        </div>
+      </div>
 
-      <TextField
-        label="Bild url"
-        placeholder="imgUrl"
-        type="text"
-        name="imgUrl"
-        value={formik.values.imgUrl}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-      />
-      {formik.touched.imgUrl && formik.errors.imgUrl}
+      <div className="flex flex-col w-full gap-4 sm:flex-row">
+        <div className="flex w-full flex-col">
+          <TextField
+            sx={{ width: "100%" }}
+            label="Bild url"
+            placeholder="imgUrl"
+            type="text"
+            name="imgUrl"
+            value={formik.values.imgUrl}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <span className="text-red-500">
+            {formik.touched.imgUrl && formik.errors.imgUrl}
+          </span>
+        </div>
+        <div className="flex w-full flex-col">
+          <TextField
+            sx={{ width: "100%" }}
+            label="Lagersaldo"
+            placeholder="amountInStock"
+            type="number"
+            name="amountInStock"
+            value={formik.values.amountInStock}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <span className="text-red-500">{formik.errors.amountInStock}</span>
+        </div>
+      </div>
 
       <TextField
         multiline
@@ -104,7 +138,9 @@ const ProductForm: FC<Props> = ({ product }) => {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
       />
-      {formik.touched.description && formik.errors.description}
+      <span className="text-red-500">
+        {formik.touched.description && formik.errors.description}
+      </span>
 
       <TextField
         multiline
@@ -116,19 +152,10 @@ const ProductForm: FC<Props> = ({ product }) => {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
       />
-      {formik.touched.longDescription && formik.errors.longDescription}
+      <span className="text-red-500">
+        {formik.touched.longDescription && formik.errors.longDescription}
+      </span>
 
-      <TextField
-        label="Lagersaldo"
-        placeholder="amountInStock"
-        type="number"
-        name="amountInStock"
-        value={formik.values.amountInStock}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-      />
-
-      {formik.errors.amountInStock}
       <Button variant="contained" type="submit">
         Spara Produkt
       </Button>

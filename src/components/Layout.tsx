@@ -1,17 +1,19 @@
 import { FC } from "react";
+import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 
 interface Props {
-  children: React.ReactNode;
+  admin?: boolean;
 }
 
-const Layout: FC<Props> = ({ children }) => {
+const Layout: FC<Props> = ({ admin }) => {
   return (
     <div>
-      <Header />
-      <main>{children}</main>
-
+      <Header admin={admin} />
+      <main>
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );

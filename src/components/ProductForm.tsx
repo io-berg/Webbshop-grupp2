@@ -12,7 +12,7 @@ interface Props {
 type ProductRecord = Record<keyof ProductCreate, Yup.AnySchema>;
 
 const ProductSchema = Yup.object().shape<ProductRecord>({
-  name: Yup.string().min(1).required("Namn fårår inte vara blankt"),
+  name: Yup.string().min(1).required("Namn får inte vara blankt"),
   price: Yup.number().required("Priset får inte vara negativt").min(0),
   imgUrl: Yup.string().min(1).required("Bild länk får inte vara blank"),
   description: Yup.string().min(1).required("Beskrivning får inte vara blank"),

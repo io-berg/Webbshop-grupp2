@@ -1,6 +1,9 @@
+import { Button, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { useProducts } from "../contexts/ProductContext";
 import { Product, ProductCreate } from "../utils/types";
 
 interface Props {
@@ -18,6 +21,9 @@ const ProductSchema = Yup.object().shape<ProductRecord>({
 });
 
 const ProductForm: FC<Props> = ({ product }) => {
+  const { addProduct, editProduct } = useProducts();
+  const navigate = useNavigate();
+
   const formik = useFormik<ProductCreate>({
     initialValues: product || {
       name: "",
@@ -32,97 +38,109 @@ const ProductForm: FC<Props> = ({ product }) => {
     validationSchema: ProductSchema,
     onSubmit: (values) => {
       if (product) {
-        // EDIT
+        const editedProduct: Product = {
+          ...values,
+          id: product.id,
+          reviews: product.reviews,
+        };
+        //add confirmation that all worked
+        editProduct(editedProduct);
+        navigate("/admin");
       } else {
-        // NEW
+        const newProduct: Product = {
+          ...values,
+          id: generateProductId(),
+          reviews: [],
+        };
+        addProduct(newProduct);
+        //add confirmation that all worked
+        navigate("/admin");
       }
-      // TODO: Save product to state/api
       console.log("ON SUBMIT", values);
     },
   });
 
   return (
     <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4 w-1/4">
-      <div className="flex justify-between">
-        <label htmlFor="name">Name:</label>
-        <input
-          placeholder="name"
-          type="text"
-          name="name"
-          value={formik.values.name}
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-        />
-      </div>
+      <TextField
+        label="Namn"
+        placeholder="name"
+        type="text"
+        name="name"
+        value={formik.values.name}
+        onBlur={formik.handleBlur}
+        onChange={formik.handleChange}
+      />
       {formik.touched.name && formik.errors.name}
-      <div className="flex justify-between">
-        <label htmlFor="price">Price:</label>
-        <input
-          placeholder="price"
-          type="number"
-          name="price"
-          value={formik.values.price}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-        />
-      </div>
+      <TextField
+        label="Pris"
+        placeholder="price"
+        type="number"
+        name="price"
+        value={formik.values.price}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
       {formik.errors.price}
 
-      <div className="flex justify-between">
-        <label htmlFor="imgUrl">Image Url:</label>
-        <input
-          placeholder="imgUrl"
-          type="text"
-          name="imgUrl"
-          value={formik.values.imgUrl}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-        />
-      </div>
+      <TextField
+        label="Bild url"
+        placeholder="imgUrl"
+        type="text"
+        name="imgUrl"
+        value={formik.values.imgUrl}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
       {formik.touched.imgUrl && formik.errors.imgUrl}
 
-      <div className="flex justify-between">
-        <label htmlFor="description">Description:</label>
-        <input
-          placeholder="description"
-          type="text"
-          name="description"
-          value={formik.values.description}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-        />
-      </div>
+      <TextField
+        multiline
+        label="Beskriving"
+        placeholder="description"
+        type="text"
+        name="description"
+        value={formik.values.description}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
       {formik.touched.description && formik.errors.description}
 
-      <div className="flex justify-between">
-        <label htmlFor="longDescription">Long Description:</label>
-        <input
-          placeholder="longDescription"
-          type="text"
-          name="longDescription"
-          value={formik.values.longDescription}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-        />
-      </div>
+      <TextField
+        multiline
+        label="Längre Beskrivning"
+        placeholder="longDescription"
+        type="text"
+        name="longDescription"
+        value={formik.values.longDescription}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
       {formik.touched.longDescription && formik.errors.longDescription}
 
-      <div className="flex justify-between">
-        <label htmlFor="amountInStock">Amount in stock:</label>
-        <input
-          placeholder="amountInStock"
-          type="number"
-          name="amountInStock"
-          value={formik.values.amountInStock}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-        />
-      </div>
-      {formik.errors.amountInStock}
+      <TextField
+        label="Lagersaldo"
+        placeholder="amountInStock"
+        type="number"
+        name="amountInStock"
+        value={formik.values.amountInStock}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
 
-      <button type="submit">Save Product</button>
+      {formik.errors.amountInStock}
+      <Button variant="contained" type="submit">
+        Spara Produkt
+      </Button>
     </form>
   );
 };
+
+function generateProductId() {
+  const { products } = useProducts();
+
+  const id: number = Math.max(...products.map((p) => p.id));
+  return id;
+}
 
 export default ProductForm;

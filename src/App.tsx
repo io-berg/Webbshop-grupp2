@@ -23,7 +23,7 @@ function App() {
         }
       >
         <Route index element={<AdminPage />} />
-
+        <Route path="edit/:Id" element={<EditPage />} />
         {/* Admin pages go here ^ */}
       </Route>
     </Routes>

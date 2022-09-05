@@ -60,7 +60,6 @@ const ProductForm: FC<Props> = ({ product }) => {
         //add confirmation that all worked
         navigate("/admin");
       }
-      console.log("ON SUBMIT", values);
     },
   });
 

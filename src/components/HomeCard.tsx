@@ -30,7 +30,7 @@ const HomeCard: FC<Props> = ({ product }) => {
             <Typography>Pris: {product.price} kr</Typography>
           </Typography>
           <br />
-          <Typography variant="body2" color="text.secondary" minHeight="60px">
+          <Typography variant="body2" color="text.secondary" minHeight="80px">
             {product.description}
           </Typography>
         </CardContent>

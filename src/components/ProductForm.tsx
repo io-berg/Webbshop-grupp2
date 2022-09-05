@@ -25,7 +25,7 @@ const ProductSchema = Yup.object().shape<ProductRecord>({
 });
 
 const ProductForm: FC<Props> = ({ product }) => {
-  const { addProduct, editProduct } = useProducts();
+  const { addProduct, editProduct, generateProductId } = useProducts();
   const navigate = useNavigate();
 
   const formik = useFormik<ProductCreate>({
@@ -162,12 +162,5 @@ const ProductForm: FC<Props> = ({ product }) => {
     </form>
   );
 };
-
-function generateProductId() {
-  const { products } = useProducts();
-
-  const id: number = Math.max(...products.map((p) => p.id));
-  return id;
-}
 
 export default ProductForm;

@@ -13,6 +13,7 @@ interface ContextValue {
   addProduct: (product: Product) => void;
   removeProduct: (product: Product) => void;
   editProduct: (product: Product) => void;
+  generateProductId: () => number;
 }
 
 const ProductContext = createContext<ContextValue>({
@@ -20,6 +21,9 @@ const ProductContext = createContext<ContextValue>({
   addProduct: () => {},
   removeProduct: () => {},
   editProduct: () => {},
+  generateProductId: () => {
+    return 0;
+  },
 });
 
 interface Props {
@@ -49,13 +53,26 @@ function ProductProvider({ children }: Props) {
     );
   };
 
+  const generateProductId = () => {
+    const { products } = useProducts();
+
+    const id: number = Math.max(...products.map((p) => p.id));
+    return id;
+  };
+
   useEffect(() => {
     localStorage.setItem("products", JSON.stringify(products));
   }, [products]);
 
   return (
     <ProductContext.Provider
-      value={{ products, addProduct, removeProduct, editProduct }}
+      value={{
+        products,
+        addProduct,
+        removeProduct,
+        editProduct,
+        generateProductId,
+      }}
     >
       {children}
     </ProductContext.Provider>

@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useParams } from "react-router-dom";
+import NavCrumbs from "../components/NavCrumbs";
 import ProductForm from "../components/ProductForm";
 import { useProducts } from "../contexts/ProductContext";
 
@@ -13,6 +14,13 @@ const EditPage: FC = () => {
   }
   return (
     <div className="w-screen flex items-center flex-col">
+      <NavCrumbs
+        crumbs={[
+          { name: "Home", path: "/" },
+          { name: "Admin", path: "/admin" },
+          { name: "Edit", path: "/admin/edit/${params.Id}" },
+        ]}
+      />
       <h2 className="text-5xl font-extrabold m-4"> Ändra Produkt</h2>
       <ProductForm product={product} />
     </div>

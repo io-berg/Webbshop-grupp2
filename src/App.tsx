@@ -1,22 +1,32 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
+import ProductProvider from "./contexts/ProductContext";
 import AdminPage from "./pages/AdminPage";
 import EditPage from "./pages/EditPage";
 import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        {/* <Route path="/" element={<ProductPage />} />
-        <Route path="/" element={<CartPage />} /> */}
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
 
-        <Route path="/admin" element={<AdminPage />} />
-        {/* <Route path="/" element={<CreatePage />} />  */}
-        <Route path="/admin/:Id" element={<EditPage />} />
-      </Routes>
-    </Layout>
+        {/* Regular pages go here ^ */}
+      </Route>
+
+      <Route
+        path="/admin"
+        element={
+          <ProductProvider>
+            <Layout admin />
+          </ProductProvider>
+        }
+      >
+        <Route index element={<AdminPage />} />
+
+        {/* Admin pages go here ^ */}
+      </Route>
+    </Routes>
   );
 }
 

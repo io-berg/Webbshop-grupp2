@@ -31,7 +31,7 @@
 
 Inlämning 4 - Webbshop Grupp 2
 
-En webbshop för blommor med admin sida för att hantera produkterna.
+En webbshop för blommor med admin sida för att hantera produkter.
 
 <br/>
 

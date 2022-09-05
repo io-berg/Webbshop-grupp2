@@ -18,3 +18,9 @@ export interface Review {
   title: string;
   body: string;
 }
+
+export interface CartItem {
+  id: number;
+  product: Product;
+  quantity: number;
+}

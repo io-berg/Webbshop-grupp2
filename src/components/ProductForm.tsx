@@ -10,11 +10,11 @@ type ProductRecord = Record<keyof ProductCreate, Yup.AnySchema>;
 
 const ProductSchema = Yup.object().shape<ProductRecord>({
   name: Yup.string().min(1).required(),
-  price: Yup.number().required(),
+  price: Yup.number().required().min(0),
   imgUrl: Yup.string().min(1).required(),
   description: Yup.string().min(1).required(),
   longDescription: Yup.string().min(1).required(),
-  amountInStock: Yup.number().required(),
+  amountInStock: Yup.number().min(0).required(),
 });
 
 const ProductForm: FC<Props> = ({ product }) => {
@@ -28,6 +28,7 @@ const ProductForm: FC<Props> = ({ product }) => {
       amountInStock: 0,
     },
     validateOnBlur: true,
+    validateOnChange: true,
     validationSchema: ProductSchema,
     onSubmit: (values) => {
       if (product) {
@@ -62,9 +63,10 @@ const ProductForm: FC<Props> = ({ product }) => {
           name="price"
           value={formik.values.price}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
-        {formik.touched.price && formik.errors.price}
       </div>
+      {formik.errors.price}
 
       <div className="flex justify-between">
         <label htmlFor="imgUrl">Image Url:</label>
@@ -74,9 +76,10 @@ const ProductForm: FC<Props> = ({ product }) => {
           name="imgUrl"
           value={formik.values.imgUrl}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
-        {formik.touched.imgUrl && formik.errors.imgUrl}
       </div>
+      {formik.touched.imgUrl && formik.errors.imgUrl}
 
       <div className="flex justify-between">
         <label htmlFor="description">Description:</label>
@@ -86,9 +89,10 @@ const ProductForm: FC<Props> = ({ product }) => {
           name="description"
           value={formik.values.description}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
-        {formik.touched.description && formik.errors.description}
       </div>
+      {formik.touched.description && formik.errors.description}
 
       <div className="flex justify-between">
         <label htmlFor="longDescription">Long Description:</label>
@@ -98,9 +102,10 @@ const ProductForm: FC<Props> = ({ product }) => {
           name="longDescription"
           value={formik.values.longDescription}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
-        {formik.touched.longDescription && formik.errors.longDescription}
       </div>
+      {formik.touched.longDescription && formik.errors.longDescription}
 
       <div className="flex justify-between">
         <label htmlFor="amountInStock">Amount in stock:</label>
@@ -110,9 +115,10 @@ const ProductForm: FC<Props> = ({ product }) => {
           name="amountInStock"
           value={formik.values.amountInStock}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
-        {formik.touched.amountInStock && formik.errors.amountInStock}
       </div>
+      {formik.errors.amountInStock}
 
       <button type="submit">Save Product</button>
     </form>

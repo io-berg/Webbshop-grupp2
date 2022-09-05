@@ -27,16 +27,17 @@ const HomeCard: FC<Props> = ({ product }) => {
           <Typography gutterBottom variant="h5" component="div">
             {product.name}
             <br />
-            {product.price} kr
+            <Typography>Pris: {product.price} kr</Typography>
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <br />
+          <Typography variant="body2" color="text.secondary" minHeight="60px">
             {product.description}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Lägg till i kundvagn
+          Lägg till i kundvagn{" "}
         </Button>
       </CardActions>
     </Card>

@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NavCrumbs from "../components/NavCrumbs";
 import ProductTable from "../components/ProductTable/ProductTable";
 import { useProducts } from "../contexts/ProductContext";
 import { Product } from "../utils/types";
@@ -41,6 +42,12 @@ const AdminPage: FC = () => {
     <>
       <Container>
         <div className="mt-6" />
+        <NavCrumbs
+          crumbs={[
+            { name: "Home", path: "/" },
+            { name: "Admin", path: "/admin" },
+          ]}
+        />
         <ProductTable
           Products={products}
           handleDelete={handleClickDelete}

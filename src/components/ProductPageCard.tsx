@@ -19,9 +19,46 @@ interface Props {
 
 const ProductPageCard: FC<Props> = ({ product }) => {
   return (
-    <Card sx={{ minWidth: 275 }}>
-      <CardMedia component="img" height="200" image={product.imgUrl} />
-    </Card>
+    <div className="flex flex-col">
+      <div className="flex">
+        <Card sx={{ minWidth: 375 }}>
+          <CardMedia component="img" height="140" image={product.imgUrl} />
+        </Card>
+        <Card sx={{ minWidth: 375 }}>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {product.name}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {product.description}
+            </Typography>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="flex ">
+        <Card sx={{ minWidth: 375 }}>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {product.name}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {product.longDescription}
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card sx={{ minWidth: 375 }}>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              Reviews
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Reviews
+            </Typography>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
   );
 };
 

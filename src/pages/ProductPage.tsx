@@ -1,9 +1,10 @@
-import { Box, Container, CssBaseline, List } from "@mui/material";
+import { Box, Container, CssBaseline, List, Stack } from "@mui/material";
 import React, { FC } from "react";
 import { Product } from "../utils/types";
 import ProductPageCard from "../components/ProductPage/ProductPageCard";
 import ReviewCard from "../components/ProductPage/ReviewCard";
 import { data } from "../utils/mockData";
+import NavCrumbs from "../components/NavCrumbs";
 
 //detta objekt endast för o testa
 const product = {
@@ -24,6 +25,20 @@ const product = {
       title: "Bra blomma",
       body: "Blommar bra, bra färg och bra storlek.",
     },
+       {
+      id: 2,
+      author: "Kalle",
+      stars: 5,
+      title: "Bra blomma",
+      body: "Blommar bra, bra färg och bra storlek.",
+    },
+       {
+      id: 3,
+      author: "Kalle",
+      stars: 5,
+      title: "Bra blomma",
+      body: "Blommar bra, bra färg och bra storlek.",
+    },
   ],
 };
 
@@ -32,15 +47,22 @@ const ProductPage: FC = () => {
     <React.Fragment>
       <CssBaseline />
       <Container fixed>
-        <Box sx={{ bgcolor: "#cfe8fc", widht: "100%", height: "100%" }}>
+       
+        <Box sx={{ bgcolor: "FFFFFF", widht: "100%", height: "100%" }}>
+              <NavCrumbs
+          crumbs={[
+            { name: "Home", path: "/" },
+            { name: "Product", path: "/product" },
+          ]}
+        />
           <ProductPageCard product={product} />
         </Box>
-        <Box sx={{ bgcolor: "#cfe8fc", widht: "100%", height: "100vh" }}>
+        <Box sx={{ bgcolor: "#FFFFFF", widht: "100%", height: "100vh" }}>
           <List>
             {product.reviews.map((review) => (
               <ReviewCard review={review} />
             ))}
-          </List>
+            </List>
         </Box>
       </Container>
     </React.Fragment>

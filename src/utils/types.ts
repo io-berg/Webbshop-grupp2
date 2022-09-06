@@ -26,4 +26,3 @@ export interface CartItem {
 }
 
 export type ProductCreate = Omit<Product, "id" | "reviews">;
-

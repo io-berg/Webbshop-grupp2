@@ -19,4 +19,11 @@ export interface Review {
   body: string;
 }
 
+export interface CartItem {
+  id: number;
+  product: Product;
+  quantity: number;
+}
+
 export type ProductCreate = Omit<Product, "id" | "reviews">;
+

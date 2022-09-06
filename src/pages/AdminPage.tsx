@@ -55,22 +55,24 @@ const AdminPage: FC = () => {
           handleAdd={handleClickAdd}
           mobile={mobile}
         />
-        <Dialog open={productToDelete !== null}>
-          <DialogTitle>
-            Är du säker på att du vill ta bort produkten "
-            {productToDelete?.name}"?
-          </DialogTitle>
-          <DialogActions>
-            <Button onClick={() => setProductToDelete(null)}>Avbryt</Button>
-            <Button
-              variant="contained"
-              onClick={() => handleConfirmDelete(productToDelete!)}
-              color="error"
-            >
-              Ta bort
-            </Button>
-          </DialogActions>
-        </Dialog>
+        {productToDelete && (
+          <Dialog open={productToDelete !== null}>
+            <DialogTitle>
+              Är du säker på att du vill ta bort produkten &quot;
+              {productToDelete?.name}&quot;?
+            </DialogTitle>
+            <DialogActions>
+              <Button onClick={() => setProductToDelete(null)}>Avbryt</Button>
+              <Button
+                variant="contained"
+                onClick={() => handleConfirmDelete(productToDelete)}
+                color="error"
+              >
+                Ta bort
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
       </Container>
       {mobile && (
         <Fab

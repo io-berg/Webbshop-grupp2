@@ -24,7 +24,7 @@ const CreatePage: FC = () => {
           { name: "Create", path: "/admin/create" },
         ]}
       />
-      <Typography variant="h2" align="center">
+      <Typography variant="h2" align="center" marginBottom={2}>
         Skapa produkt
       </Typography>
       <ProductForm onSubmit={handleSubmit} />

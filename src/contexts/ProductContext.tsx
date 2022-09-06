@@ -42,11 +42,6 @@ function ProductProvider({ children }: Props) {
     }
   });
 
-  const generateProductId = () => {
-    const id: number = Math.max(...products.map((p) => p.id), 0) + 1;
-    return id;
-  };
-
   const addProduct = (product: ProductCreate) => {
     const newProduct: Product = {
       ...product,

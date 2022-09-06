@@ -54,6 +54,11 @@ function ProductProvider({ children }: Props) {
     );
   };
 
+  const generateProductId = () => {
+    const id: number = Math.max(...products.map((p) => p.id), 0) + 1;
+    return id;
+  };
+
   useEffect(() => {
     localStorage.setItem("products", JSON.stringify(products));
   }, [products]);
@@ -70,13 +75,6 @@ function ProductProvider({ children }: Props) {
       {children}
     </ProductContext.Provider>
   );
-}
-
-function generateProductId() {
-  const { products } = useProducts();
-
-  const id: number = Math.max(...products.map((p) => p.id), 0) + 1;
-  return id;
 }
 
 export const useProducts = () => useContext(ProductContext);

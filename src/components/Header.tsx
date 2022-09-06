@@ -1,7 +1,7 @@
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { AppBar, Container, Toolbar, Typography } from "@mui/material";
 import { FC } from "react";
 import "../styles/header.css";
+import CartIcon from "./CartIcon";
 
 interface Props {
   admin?: boolean;
@@ -29,7 +29,7 @@ const Header: FC<Props> = ({ admin }) => {
             >
               BLOMMOR
             </Typography>
-            {!admin ? <ShoppingCartIcon /> : null}
+            {!admin ? <CartIcon /> : null}
           </div>
         </Toolbar>
       </Container>

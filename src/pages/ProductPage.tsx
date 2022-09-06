@@ -1,20 +1,11 @@
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Typography,
-  Box,
-  Container,
-  CssBaseline,
-} from "@mui/material";
+import { Box, Container, CssBaseline, List } from "@mui/material";
 import React, { FC } from "react";
 import { Product } from "../utils/types";
-import ProductPageCard from "../components/ProductPageCard";
+import ProductPageCard from "../components/ProductPage/ProductPageCard";
+import ReviewCard from "../components/ProductPage/ReviewCard";
 import { data } from "../utils/mockData";
 
+//detta objekt endast för o testa
 const product = {
   id: 1,
   name: "Krysantemum",
@@ -43,6 +34,13 @@ const ProductPage: FC = () => {
       <Container fixed>
         <Box sx={{ bgcolor: "#cfe8fc", widht: "100%", height: "100%" }}>
           <ProductPageCard product={product} />
+        </Box>
+        <Box sx={{ bgcolor: "#cfe8fc", widht: "100%", height: "100vh" }}>
+          <List>
+            {product.reviews.map((review) => (
+              <ReviewCard review={review} />
+            ))}
+          </List>
         </Box>
       </Container>
     </React.Fragment>

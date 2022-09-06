@@ -110,34 +110,37 @@ const ProductForm: FC<Props> = ({ product, onSubmit }) => {
           </Typography>
         </div>
       </div>
+      <div className="flex w-full flex-col">
+        <TextField
+          multiline
+          label="Beskriving"
+          placeholder="description"
+          type="text"
+          name="description"
+          value={formik.values.description}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        <Typography variant="subtitle1" color="error">
+          {formik.touched.description && formik.errors.description}
+        </Typography>
+      </div>
 
-      <TextField
-        multiline
-        label="Beskriving"
-        placeholder="description"
-        type="text"
-        name="description"
-        value={formik.values.description}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-      />
-      <Typography variant="subtitle1" color="error">
-        {formik.touched.description && formik.errors.description}
-      </Typography>
-
-      <TextField
-        multiline
-        label="Längre Beskrivning"
-        placeholder="longDescription"
-        type="text"
-        name="longDescription"
-        value={formik.values.longDescription}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-      />
-      <Typography variant="subtitle1" color="error">
-        {formik.touched.longDescription && formik.errors.longDescription}
-      </Typography>
+      <div className="flex w-full flex-col">
+        <TextField
+          multiline
+          label="Längre Beskrivning"
+          placeholder="longDescription"
+          type="text"
+          name="longDescription"
+          value={formik.values.longDescription}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        <Typography variant="subtitle1" color="error">
+          {formik.touched.longDescription && formik.errors.longDescription}
+        </Typography>
+      </div>
 
       <Button variant="contained" type="submit">
         Spara Produkt

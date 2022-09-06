@@ -13,15 +13,15 @@ type ProductRecord = Record<keyof ProductCreate, Yup.AnySchema>;
 const ProductSchema = Yup.object().shape<ProductRecord>({
   name: Yup.string().min(1).required("Namn får inte vara blankt"),
   price: Yup.number()
-    .min(0.01, "Priset får inte vara 0 eller negativt")
-    .required("Lagersaldo får inte vara blankt"),
+    .positive("Priset får inte vara 0 eller negativt")
+    .required("Priset får inte vara blankt"),
   imgUrl: Yup.string().min(1).required("Bild länk får inte vara blank"),
   description: Yup.string().min(1).required("Beskrivning får inte vara blank"),
   longDescription: Yup.string()
     .min(1)
     .required("Längre beskrivning får inte vara blank"),
   amountInStock: Yup.number()
-    .min(1, "Lagersaldo får inte vara 0 eller negativt")
+    .positive("Lagersaldo får inte vara 0 eller negativt")
     .required("Lagersaldo får inte vara blankt"),
 });
 

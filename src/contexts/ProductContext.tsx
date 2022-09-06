@@ -75,7 +75,7 @@ function ProductProvider({ children }: Props) {
 function generateProductId() {
   const { products } = useProducts();
 
-  const id: number = Math.max(...products.map((p) => p.id)) + 1;
+  const id: number = Math.max(...products.map((p) => p.id), 0) + 1;
   return id;
 }
 

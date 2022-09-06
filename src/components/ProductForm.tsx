@@ -1,13 +1,12 @@
 import { Button, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { useProducts } from "../contexts/ProductContext";
 import { Product, ProductCreate } from "../utils/types";
 
 interface Props {
   product?: Product;
+  onSubmit: (productCreate: ProductCreate) => void;
 }
 type ProductRecord = Record<keyof ProductCreate, Yup.AnySchema>;
 
@@ -24,10 +23,7 @@ const ProductSchema = Yup.object().shape<ProductRecord>({
     .required("Lagersaldo får inte vara negativt"),
 });
 
-const ProductForm: FC<Props> = ({ product }) => {
-  const { addProduct, editProduct, generateProductId } = useProducts();
-  const navigate = useNavigate();
-
+const ProductForm: FC<Props> = ({ product, onSubmit }) => {
   const formik = useFormik<ProductCreate>({
     initialValues: product || {
       name: "",
@@ -41,25 +37,7 @@ const ProductForm: FC<Props> = ({ product }) => {
     validateOnChange: true,
     validationSchema: ProductSchema,
     onSubmit: (values) => {
-      if (product) {
-        const editedProduct: Product = {
-          ...values,
-          id: product.id,
-          reviews: product.reviews,
-        };
-        //add confirmation that all worked
-        editProduct(editedProduct);
-        navigate("/admin");
-      } else {
-        const newProduct: Product = {
-          ...values,
-          id: generateProductId(),
-          reviews: [],
-        };
-        addProduct(newProduct);
-        //add confirmation that all worked
-        navigate("/admin");
-      }
+      onSubmit(values);
     },
   });
 

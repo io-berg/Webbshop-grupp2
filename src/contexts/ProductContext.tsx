@@ -6,14 +6,13 @@ import {
   useState,
 } from "react";
 import { data } from "../utils/mockData";
-import { Product } from "../utils/types";
+import { Product, ProductCreate } from "../utils/types";
 
 interface ContextValue {
   products: Product[];
-  addProduct: (product: Product) => void;
+  addProduct: (product: ProductCreate) => void;
   removeProduct: (product: Product) => void;
   editProduct: (product: Product) => void;
-  generateProductId: () => number;
 }
 
 const ProductContext = createContext<ContextValue>({
@@ -21,9 +20,6 @@ const ProductContext = createContext<ContextValue>({
   addProduct: () => {},
   removeProduct: () => {},
   editProduct: () => {},
-  generateProductId: () => {
-    return 0;
-  },
 });
 
 interface Props {
@@ -39,8 +35,13 @@ function ProductProvider({ children }: Props) {
     }
   });
 
-  const addProduct = (product: Product) => {
-    setProducts((prevState) => [...prevState, product]);
+  const addProduct = (product: ProductCreate) => {
+    const newProduct: Product = {
+      ...product,
+      id: generateProductId(),
+      reviews: [],
+    };
+    setProducts((prevState) => [...prevState, newProduct]);
   };
 
   const removeProduct = (product: Product) => {
@@ -51,13 +52,6 @@ function ProductProvider({ children }: Props) {
     setProducts((prevState) =>
       prevState.map((p) => (p.id === product.id ? product : p))
     );
-  };
-
-  const generateProductId = () => {
-    const { products } = useProducts();
-
-    const id: number = Math.max(...products.map((p) => p.id));
-    return id;
   };
 
   useEffect(() => {
@@ -71,12 +65,18 @@ function ProductProvider({ children }: Props) {
         addProduct,
         removeProduct,
         editProduct,
-        generateProductId,
       }}
     >
       {children}
     </ProductContext.Provider>
   );
+}
+
+function generateProductId() {
+  const { products } = useProducts();
+
+  const id: number = Math.max(...products.map((p) => p.id)) + 1;
+  return id;
 }
 
 export const useProducts = () => useContext(ProductContext);

@@ -41,7 +41,7 @@ const ProductPage: FC = () => {
     <React.Fragment>
       <CssBaseline />
       <Container fixed>
-        <Box sx={{ bgcolor: "#cfe8fc", widht: "100%", height: "100vh" }}>
+        <Box sx={{ bgcolor: "#cfe8fc", widht: "100%", height: "100%" }}>
           <ProductPageCard product={product} />
         </Box>
       </Container>

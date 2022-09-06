@@ -24,3 +24,6 @@ export interface CartItem {
   product: Product;
   quantity: number;
 }
+
+export type ProductCreate = Omit<Product, "id" | "reviews">;
+

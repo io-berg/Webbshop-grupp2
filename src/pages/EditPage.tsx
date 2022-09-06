@@ -32,7 +32,7 @@ const EditPage: FC = () => {
             { name: "Edit", path: "/admin/edit/${params.Id}" },
           ]}
         />
-        <Typography variant="h2" align="center">
+        <Typography variant="h2" align="center" marginBottom={2}>
           Ändra Produkt
         </Typography>
         <ProductForm product={product} onSubmit={handleSubmit} />

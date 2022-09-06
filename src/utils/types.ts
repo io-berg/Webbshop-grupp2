@@ -18,3 +18,5 @@ export interface Review {
   title: string;
   body: string;
 }
+
+export type ProductCreate = Omit<Product, "id" | "reviews">;

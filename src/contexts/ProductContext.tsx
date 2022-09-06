@@ -6,11 +6,11 @@ import {
   useState,
 } from "react";
 import { data } from "../utils/mockData";
-import { Product } from "../utils/types";
+import { Product, ProductCreate } from "../utils/types";
 
 interface ContextValue {
   products: Product[];
-  addProduct: (product: Product) => void;
+  addProduct: (product: ProductCreate) => void;
   removeProduct: (product: Product) => void;
   editProduct: (product: Product) => void;
 }
@@ -35,8 +35,13 @@ function ProductProvider({ children }: Props) {
     }
   });
 
-  const addProduct = (product: Product) => {
-    setProducts((prevState) => [...prevState, product]);
+  const addProduct = (product: ProductCreate) => {
+    const newProduct: Product = {
+      ...product,
+      id: generateProductId(),
+      reviews: [],
+    };
+    setProducts((prevState) => [...prevState, newProduct]);
   };
 
   const removeProduct = (product: Product) => {
@@ -55,11 +60,23 @@ function ProductProvider({ children }: Props) {
 
   return (
     <ProductContext.Provider
-      value={{ products, addProduct, removeProduct, editProduct }}
+      value={{
+        products,
+        addProduct,
+        removeProduct,
+        editProduct,
+      }}
     >
       {children}
     </ProductContext.Provider>
   );
+}
+
+function generateProductId() {
+  const { products } = useProducts();
+
+  const id: number = Math.max(...products.map((p) => p.id)) + 1;
+  return id;
 }
 
 export const useProducts = () => useContext(ProductContext);

@@ -11,10 +11,6 @@ const ReviewCard: FC<Props> = ({ review }) => {
       <div className="flex p-1">
         <Card sx={{ minWidth: 375 }}>
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Reviews
-            </Typography>
-
             <Typography variant="h6" color="text.secondary">
               {review.title}
             </Typography>

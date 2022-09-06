@@ -1,4 +1,4 @@
-import { Box, Container, CssBaseline, List, Stack } from "@mui/material";
+import { Box, Container, CssBaseline, List, Stack, Typography } from "@mui/material";
 import React, { FC } from "react";
 import { Product } from "../utils/types";
 import ProductPageCard from "../components/ProductPage/ProductPageCard";

@@ -19,7 +19,7 @@ const ProductPageCard: FC<Props> = ({ product }) => {
         <Card sx={{ minWidth: 375 }}>
           <CardMedia component="img" height="140" image={product.imgUrl} />
         </Card>
-        <Card sx={{ minWidth: 375 }}>
+        <Card sx={{ minWidth: 375, marginTop: 70}}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {product.name}

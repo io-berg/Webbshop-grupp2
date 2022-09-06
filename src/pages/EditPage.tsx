@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import NavCrumbs from "../components/NavCrumbs";
@@ -32,12 +32,18 @@ const EditPage: FC = () => {
             { name: "Edit", path: "/admin/edit/${params.Id}" },
           ]}
         />
-        <h2 className="text-5xl font-extrabold m-4"> Ändra Produkt</h2>
+        <Typography variant="h2" align="center" marginBottom={2}>
+          Ändra Produkt
+        </Typography>
         <ProductForm product={product} onSubmit={handleSubmit} />
       </Container>
     );
   }
-  return <p>Produkt med Id: {params.Id} finns inte.</p>;
+  return (
+    <Typography variant="h3" align="center" color="error">
+      Ingen produkt med det id {params.Id} finns.
+    </Typography>
+  );
 };
 
 export default EditPage;

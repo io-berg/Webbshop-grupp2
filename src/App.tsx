@@ -3,6 +3,7 @@ import Layout from "./components/Layout";
 import CartProvider from "./contexts/CartContext";
 import ProductProvider from "./contexts/ProductContext";
 import AdminPage from "./pages/AdminPage";
+import CartPage from "./pages/CartPage";
 import CreatePage from "./pages/CreatePage";
 import EditPage from "./pages/EditPage";
 import HomePage from "./pages/HomePage";
@@ -19,6 +20,7 @@ function App() {
         }
       >
         <Route index element={<HomePage />} />
+        <Route path="/Cart" element={<CartPage />} />
 
         {/* Regular pages go here ^ */}
       </Route>

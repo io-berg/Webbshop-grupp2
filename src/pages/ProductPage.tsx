@@ -23,7 +23,14 @@ const ProductPage: FC = () => {
             />
             <ProductPageCard product={product} />
           </Box>
-          <Box sx={{ bgcolor: "#FFFFFF", widht: "100%", height: "100vh" }}>
+          <Box
+            sx={{
+              bgcolor: "#FFFFFF",
+              widht: "100%",
+              height: "auto",
+              flexDirection: "column",
+            }}
+          >
             <List>
               {product.reviews.map((review) => (
                 <div key={review.id}>

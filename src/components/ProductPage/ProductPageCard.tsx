@@ -18,7 +18,7 @@ const ProductPageCard: FC<Props> = ({ product }) => {
   const cart = useCart();
   return (
     <div className="flex flex-col p-1">
-      <div className="flex p-1">
+      <div className="flex ">
         <Card sx={{ minWidth: 375 }}>
           <CardMedia component="img" height="100" image={product.imgUrl} />
         </Card>
@@ -42,7 +42,7 @@ const ProductPageCard: FC<Props> = ({ product }) => {
         </Card>
       </div>
 
-      <div className="flex p-1 ">
+      <div className="flex  ">
         <Card sx={{ minWidth: 375 }}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">

@@ -20,13 +20,11 @@ function App() {
         }
       >
         <Route index element={<HomePage />} />
+        <Route path="product/:Id" element={<ProductPage />} />
 
         {/* Regular pages go here ^ */}
       </Route>
-      <Route path="/product" element={<Layout />}>
-        <Route index element={<ProductPage />} />
-      </Route>
-
+    
       <Route
         path="/admin"
         element={

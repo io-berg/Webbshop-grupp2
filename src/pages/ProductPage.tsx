@@ -26,7 +26,9 @@ const ProductPage: FC = () => {
           <Box sx={{ bgcolor: "#FFFFFF", widht: "100%", height: "100vh" }}>
             <List>
               {product.reviews.map((review) => (
-                <ReviewCard review={review} />
+                <div key={review.id}>
+                  <ReviewCard review={review} />
+                </div>
               ))}
             </List>
           </Box>

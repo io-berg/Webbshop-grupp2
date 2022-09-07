@@ -23,9 +23,6 @@ const CartIcon = () => {
 
   const style = {
     animation: `${frames} 0.3s ease-in-out`,
-    "&:not(:first-child)": {
-      animation: `${frames} 0.3s ease-in-out`,
-    },
   };
 
   const runAnimation = async () => {

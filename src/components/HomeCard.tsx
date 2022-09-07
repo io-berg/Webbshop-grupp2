@@ -1,5 +1,6 @@
 import {
   Button,
+  ButtonBaseActions,
   Card,
   CardActionArea,
   CardActions,
@@ -8,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
 import { Product } from "../utils/types";
 
@@ -16,9 +18,10 @@ interface Props {
 }
 const HomeCard: FC<Props> = ({ product }) => {
   const cart = useCart();
+  const navigate = useNavigate();
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+      <CardActionArea onClick={() => navigate(`/product/${product.id}`)}>
         <CardMedia
           component="img"
           height="140"

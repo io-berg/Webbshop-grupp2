@@ -22,7 +22,7 @@ const ProductPageCard: FC<Props> = ({ product }) => {
         <Card sx={{ minWidth: 375 }}>
           <CardMedia component="img" height="100" image={product.imgUrl} />
         </Card>
-        <Card sx={{ minWidth: 375}}>
+        <Card sx={{ minWidth: 375 }}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {product.name}
@@ -33,10 +33,11 @@ const ProductPageCard: FC<Props> = ({ product }) => {
             <Typography gutterBottom variant="h5" component="div">
               {product.price}
             </Typography>
-            
           </CardContent>
           <CardActions>
-            <Button onClick={() => cart.addCartItem(product)}>Lägg till i varukorgen </Button>
+            <Button onClick={() => cart.addCartItem(product)}>
+              Lägg till i varukorgen{" "}
+            </Button>
           </CardActions>
         </Card>
       </div>

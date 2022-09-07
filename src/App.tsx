@@ -24,7 +24,7 @@ function App() {
 
         {/* Regular pages go here ^ */}
       </Route>
-    
+
       <Route
         path="/admin"
         element={

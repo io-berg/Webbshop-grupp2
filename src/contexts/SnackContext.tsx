@@ -8,18 +8,14 @@ export interface Snack {
 }
 
 interface ContextValue {
-  snack: Snack;
-  setSnack: (snack: Snack) => void;
+  snack: Snack[];
+  addNewSnack: (snack: Snack) => void;
   handleClose: () => void;
 }
 
 const SnackContext = createContext<ContextValue>({
-  snack: {
-    message: "",
-    color: "error",
-    open: false,
-  },
-  setSnack(snack) {
+  snack: [],
+  addNewSnack(snack) {
     console.log("error:" + snack.message);
   },
   handleClose: () => {
@@ -32,22 +28,18 @@ interface Props {
 }
 
 function SnackProvider({ children }: Props) {
-  const [snack, setSnack] = useState<Snack>({
-    message: "",
-    color: "error",
-    open: false,
-  });
+  const [snack, setSnack] = useState<Snack[]>([]);
+
+  const addNewSnack = (newSnack: Snack) => {
+    setSnack((prevState) => [...prevState, newSnack]);
+  };
 
   const handleClose = () => {
-    setSnack({
-      message: "",
-      color: "success",
-      open: false,
-    });
+    setSnack((prevState) => prevState.slice(1));
   };
 
   return (
-    <SnackContext.Provider value={{ snack, setSnack, handleClose }}>
+    <SnackContext.Provider value={{ snack, addNewSnack, handleClose }}>
       {children}
     </SnackContext.Provider>
   );

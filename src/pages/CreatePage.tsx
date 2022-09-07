@@ -10,12 +10,12 @@ import { ProductCreate } from "../utils/types";
 const CreatePage: FC = () => {
   const navigate = useNavigate();
   const { addProduct } = useProducts();
-  const { setSnack } = useSnack();
+  const { addNewSnack } = useSnack();
 
   const handleSubmit = (values: ProductCreate) => {
     //add confirmation that all worked
     addProduct(values);
-    setSnack({
+    addNewSnack({
       message: "Produkt är nu skapad",
       color: "success",
       open: true,

@@ -9,7 +9,7 @@ import { Product, ProductCreate } from "../utils/types";
 
 const EditPage: FC = () => {
   const navigate = useNavigate();
-  const { setSnack } = useSnack();
+  const { addNewSnack } = useSnack();
   const params = useParams<{ Id: string }>();
   const { products, editProduct } = useProducts();
   const product = products.find((p) => p.id === Number(params.Id));
@@ -23,7 +23,7 @@ const EditPage: FC = () => {
       };
       //add confirmation that all worked
       editProduct(editedProduct);
-      setSnack({
+      addNewSnack({
         message: "Produkt är nu ändrad",
         color: "success",
         open: true,

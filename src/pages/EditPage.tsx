@@ -4,10 +4,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import NavCrumbs from "../components/NavCrumbs";
 import ProductForm from "../components/ProductForm";
 import { useProducts } from "../contexts/ProductContext";
+import { useSnack } from "../contexts/SnackContext";
+
 import { Product, ProductCreate } from "../utils/types";
 
 const EditPage: FC = () => {
   const navigate = useNavigate();
+  const { setSnack } = useSnack();
   const params = useParams<{ Id: string }>();
   const { products, editProduct } = useProducts();
   const product = products.find((p) => p.id === Number(params.Id));
@@ -21,6 +24,11 @@ const EditPage: FC = () => {
       };
       //add confirmation that all worked
       editProduct(editedProduct);
+      setSnack({
+        message: "Produkt är nu ändrad",
+        color: "success",
+        open: true,
+      });
       navigate("/admin");
     };
     return (

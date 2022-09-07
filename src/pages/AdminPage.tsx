@@ -12,7 +12,6 @@ import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavCrumbs from "../components/NavCrumbs";
 import ProductTable from "../components/ProductTable/ProductTable";
-import SnackBarComponent from "../components/SnackBar";
 import { useProducts } from "../contexts/ProductContext";
 import { Product } from "../utils/types";
 
@@ -74,7 +73,6 @@ const AdminPage: FC = () => {
             </DialogActions>
           </Dialog>
         )}
-        <SnackBarComponent />
       </Container>
       {mobile && (
         <Fab

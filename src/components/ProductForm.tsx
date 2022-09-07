@@ -1,4 +1,4 @@
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { FC } from "react";
 import * as Yup from "yup";
@@ -56,10 +56,9 @@ const ProductForm: FC<Props> = ({ product, onSubmit }) => {
             value={formik.values.name}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
+            error={Boolean(formik.touched.name && formik.errors.name)}
+            helperText={formik.touched.name && formik.errors.name}
           />
-          <Typography variant="subtitle1" color="error">
-            {formik.touched.name && formik.errors.name}
-          </Typography>
         </div>
         <div className="flex w-full flex-col">
           <TextField
@@ -69,12 +68,14 @@ const ProductForm: FC<Props> = ({ product, onSubmit }) => {
             type="number"
             name="price"
             value={formik.values.price}
-            onChange={formik.handleChange}
+            onChange={(e) => {
+              formik.setFieldTouched("price", true);
+              formik.setFieldValue("price", Number(e.target.value));
+            }}
             onBlur={formik.handleBlur}
+            error={Boolean(formik.touched.price && formik.errors.price)}
+            helperText={formik.touched.price && formik.errors.price}
           />
-          <Typography variant="subtitle1" color="error">
-            {formik.errors.price}
-          </Typography>
         </div>
       </div>
 
@@ -89,10 +90,9 @@ const ProductForm: FC<Props> = ({ product, onSubmit }) => {
             value={formik.values.imgUrl}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            error={Boolean(formik.touched.imgUrl && formik.errors.imgUrl)}
+            helperText={formik.touched.imgUrl && formik.errors.imgUrl}
           />
-          <Typography variant="subtitle1" color="error">
-            {formik.touched.imgUrl && formik.errors.imgUrl}
-          </Typography>
         </div>
         <div className="flex w-full flex-col">
           <TextField
@@ -102,12 +102,18 @@ const ProductForm: FC<Props> = ({ product, onSubmit }) => {
             type="number"
             name="amountInStock"
             value={formik.values.amountInStock}
-            onChange={formik.handleChange}
+            onChange={(e) => {
+              formik.setFieldTouched("amountInStock", true);
+              formik.setFieldValue("amountInStock", Number(e.target.value));
+            }}
             onBlur={formik.handleBlur}
+            error={Boolean(
+              formik.touched.amountInStock && formik.errors.amountInStock
+            )}
+            helperText={
+              formik.touched.amountInStock && formik.errors.amountInStock
+            }
           />
-          <Typography variant="subtitle1" color="error">
-            {formik.errors.amountInStock}
-          </Typography>
         </div>
       </div>
       <div className="flex w-full flex-col">
@@ -120,10 +126,11 @@ const ProductForm: FC<Props> = ({ product, onSubmit }) => {
           value={formik.values.description}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          error={Boolean(
+            formik.touched.description && formik.errors.description
+          )}
+          helperText={formik.touched.description && formik.errors.description}
         />
-        <Typography variant="subtitle1" color="error">
-          {formik.touched.description && formik.errors.description}
-        </Typography>
       </div>
 
       <div className="flex w-full flex-col">
@@ -136,10 +143,13 @@ const ProductForm: FC<Props> = ({ product, onSubmit }) => {
           value={formik.values.longDescription}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          error={Boolean(
+            formik.touched.longDescription && formik.errors.longDescription
+          )}
+          helperText={
+            formik.touched.longDescription && formik.errors.longDescription
+          }
         />
-        <Typography variant="subtitle1" color="error">
-          {formik.touched.longDescription && formik.errors.longDescription}
-        </Typography>
       </div>
 
       <Button variant="contained" type="submit">

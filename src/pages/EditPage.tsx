@@ -5,7 +5,6 @@ import NavCrumbs from "../components/NavCrumbs";
 import ProductForm from "../components/ProductForm";
 import { useProducts } from "../contexts/ProductContext";
 import { useSnack } from "../contexts/SnackContext";
-
 import { Product, ProductCreate } from "../utils/types";
 
 const EditPage: FC = () => {

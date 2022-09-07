@@ -6,6 +6,7 @@ import AdminPage from "./pages/AdminPage";
 import CreatePage from "./pages/CreatePage";
 import EditPage from "./pages/EditPage";
 import HomePage from "./pages/HomePage";
+import ProductPage from "./pages/ProductPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         }
       >
         <Route index element={<HomePage />} />
+        <Route path="product/:Id" element={<ProductPage />} />
 
         {/* Regular pages go here ^ */}
       </Route>

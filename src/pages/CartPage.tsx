@@ -1,9 +1,11 @@
 import { Container } from "@mui/material";
+import { Box } from "@mui/system";
 import { FC } from "react";
 import NavCrumbs from "../components/NavCrumbs";
 
-const CartPage: FC= () => {
 
+const CartPage: FC= () => {
+  
     return (
 
         <Container>
@@ -11,21 +13,27 @@ const CartPage: FC= () => {
             crumbs={[
                 { name: "Home", path:"/"},
                 { name: "Cart", path: "/Cart"},
-
             ]}
             />
 
-        <div>
+        <Box>
             <h1>
                 Hello CartPage 🛒
-            </h1>
-        </div>
+                (Under construction)
 
-        <div>
+            </h1>
+
+            
+
+
+        </Box>
+
+        <Box>
             <h1>
                 Hello Checkout 💻
+                (Under Construction)
             </h1>
-        </div>
+        </Box>
 
         </Container>
 

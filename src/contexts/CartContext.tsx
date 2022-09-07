@@ -16,9 +16,15 @@ interface ContextValue {
 
 const CartContext = createContext<ContextValue>({
   cartItems: [],
-  addCartItem: () => {},
-  removeCartItem: () => {},
-  updateItemQuantity: () => {},
+  addCartItem: () => {
+    console.warn("CartProvider not found");
+  },
+  removeCartItem: () => {
+    console.warn("CartProvider not found");
+  },
+  updateItemQuantity: () => {
+    console.warn("CartProvider not found");
+  },
 });
 
 interface Props {
@@ -27,8 +33,9 @@ interface Props {
 
 function CartProvider({ children }: Props) {
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
-    if (localStorage.getItem("cartItems")) {
-      return JSON.parse(localStorage.getItem("cartItems")!);
+    const localCartItems = localStorage.getItem("cartItems");
+    if (localCartItems) {
+      return JSON.parse(localCartItems);
     } else {
       return [];
     }
@@ -54,7 +61,7 @@ function CartProvider({ children }: Props) {
     setCartItems(newCartItems);
   };
 
-  const removeCartItem = (id: Number) => {
+  const removeCartItem = (id: number) => {
     const newCartItems = cartItems.filter((item) => item.id !== id);
     setCartItems(newCartItems);
   };

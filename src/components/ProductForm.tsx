@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import { FC } from "react";
 import * as Yup from "yup";
@@ -12,15 +12,17 @@ type ProductRecord = Record<keyof ProductCreate, Yup.AnySchema>;
 
 const ProductSchema = Yup.object().shape<ProductRecord>({
   name: Yup.string().min(1).required("Namn får inte vara blankt"),
-  price: Yup.number().required("Priset får inte vara negativt").min(0),
+  price: Yup.number()
+    .positive("Priset får inte vara 0 eller negativt")
+    .required("Priset får inte vara blankt"),
   imgUrl: Yup.string().min(1).required("Bild länk får inte vara blank"),
   description: Yup.string().min(1).required("Beskrivning får inte vara blank"),
   longDescription: Yup.string()
     .min(1)
     .required("Längre beskrivning får inte vara blank"),
   amountInStock: Yup.number()
-    .min(0)
-    .required("Lagersaldo får inte vara negativt"),
+    .positive("Lagersaldo får inte vara 0 eller negativt")
+    .required("Lagersaldo får inte vara blankt"),
 });
 
 const ProductForm: FC<Props> = ({ product, onSubmit }) => {
@@ -55,9 +57,9 @@ const ProductForm: FC<Props> = ({ product, onSubmit }) => {
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
-          <span className="text-red-500">
+          <Typography variant="subtitle1" color="error">
             {formik.touched.name && formik.errors.name}
-          </span>
+          </Typography>
         </div>
         <div className="flex w-full flex-col">
           <TextField
@@ -70,7 +72,9 @@ const ProductForm: FC<Props> = ({ product, onSubmit }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          <span className="text-red-500">{formik.errors.price}</span>
+          <Typography variant="subtitle1" color="error">
+            {formik.errors.price}
+          </Typography>
         </div>
       </div>
 
@@ -86,9 +90,9 @@ const ProductForm: FC<Props> = ({ product, onSubmit }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          <span className="text-red-500">
+          <Typography variant="subtitle1" color="error">
             {formik.touched.imgUrl && formik.errors.imgUrl}
-          </span>
+          </Typography>
         </div>
         <div className="flex w-full flex-col">
           <TextField
@@ -101,37 +105,42 @@ const ProductForm: FC<Props> = ({ product, onSubmit }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          <span className="text-red-500">{formik.errors.amountInStock}</span>
+          <Typography variant="subtitle1" color="error">
+            {formik.errors.amountInStock}
+          </Typography>
         </div>
       </div>
+      <div className="flex w-full flex-col">
+        <TextField
+          multiline
+          label="Beskriving"
+          placeholder="description"
+          type="text"
+          name="description"
+          value={formik.values.description}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        <Typography variant="subtitle1" color="error">
+          {formik.touched.description && formik.errors.description}
+        </Typography>
+      </div>
 
-      <TextField
-        multiline
-        label="Beskriving"
-        placeholder="description"
-        type="text"
-        name="description"
-        value={formik.values.description}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-      />
-      <span className="text-red-500">
-        {formik.touched.description && formik.errors.description}
-      </span>
-
-      <TextField
-        multiline
-        label="Längre Beskrivning"
-        placeholder="longDescription"
-        type="text"
-        name="longDescription"
-        value={formik.values.longDescription}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-      />
-      <span className="text-red-500">
-        {formik.touched.longDescription && formik.errors.longDescription}
-      </span>
+      <div className="flex w-full flex-col">
+        <TextField
+          multiline
+          label="Längre Beskrivning"
+          placeholder="longDescription"
+          type="text"
+          name="longDescription"
+          value={formik.values.longDescription}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        <Typography variant="subtitle1" color="error">
+          {formik.touched.longDescription && formik.errors.longDescription}
+        </Typography>
+      </div>
 
       <Button variant="contained" type="submit">
         Spara Produkt

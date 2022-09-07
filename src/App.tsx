@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import CartProvider from "./contexts/CartContext";
-import ProductProvider from "./contexts/ProductContext";
 import AdminPage from "./pages/AdminPage";
 import CreatePage from "./pages/CreatePage";
 import EditPage from "./pages/EditPage";
@@ -25,14 +24,7 @@ function App() {
         {/* Regular pages go here ^ */}
       </Route>
 
-      <Route
-        path="/admin"
-        element={
-          <ProductProvider>
-            <Layout admin />
-          </ProductProvider>
-        }
-      >
+      <Route path="/admin" element={<Layout admin />}>
         <Route index element={<AdminPage />} />
         <Route path="edit/:Id" element={<EditPage />} />
         <Route path="create" element={<CreatePage />} />

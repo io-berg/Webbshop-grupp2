@@ -1,10 +1,19 @@
 import { Container } from "@mui/material";
 import { FC } from "react";
+import NavCrumbs from "../components/NavCrumbs";
 
 const CartPage: FC= () => {
+
     return (
 
         <Container>
+            <NavCrumbs
+            crumbs={[
+                { name: "Home", path:"/"},
+                { name: "cart", path: "/Cart"},
+
+            ]}
+            />
 
         <div>
             <h1>

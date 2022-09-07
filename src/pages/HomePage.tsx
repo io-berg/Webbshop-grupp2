@@ -2,6 +2,7 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import HomeCard from "../components/HomeCard";
 import { data } from "../utils/mockData";
+import AdminButton from "../components/AdminButton";
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
           </Grid>
         ))}
       </Grid>
+      <AdminButton />
     </Container>
   );
 };

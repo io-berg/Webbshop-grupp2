@@ -164,6 +164,87 @@ const data: Product[] = [
       },
     ],
   },
+  {
+    id: 9,
+    name: "Saintpaulia",
+    price: 49.99,
+    imgUrl:
+      "https://www.blomsterlandet.se/optimized/c-ProductDetailsSingle-Default-Sm1x/9f4e4a76/globalassets/catalog-images/7/2688/d385c63421ccd0b46521024e0f8c2e85.jpg",
+    description: "En klassisk växt som finns i många spännande sorter.",
+    longDescription:
+      "På sommaren kan saintpaulian stå i ett norrfönster, men på vintern behöver den mycket ljus för att sätta knopp och trivs då bäst i ett söderfönster. Aldrig under 16°. Vattna med ljummet vatten och undvik vattenstänk på bladen. Planteras om på våren i blomjord. Lätt att föröka med blad eller genom delning.",
+    amountInStock: 100,
+    reviews: [
+      {
+        id: 9,
+        author: "Mia",
+        stars: 4,
+        title: "Mycket bra",
+        body: "Blommar bra, ok färg och ok storlek.",
+      },
+    ],
+  },
+  {
+    id: 10,
+    name: "Rosenskärm",
+    price: 199,
+    imgUrl:
+      "https://www.blomsterlandet.se/optimized/c-ProductDetailsSingle-Default-Sm1x/a38da898/globalassets/catalog-images/7/5739/0c2f3be6226bbb4f99700ae67684e27f.jpg",
+    description: "Magnifik växt med rosa blommor i stora klasar.",
+    longDescription:
+      "Placeras mycket ljust och varmt och i hög luftfuktighet. Jorden får inte torka ut och plantan kan vara mycket törstig under blomningen. Duscha på bladen. Vintertid inte under 18°. Gärna under växtbelysning. Planteras om på våren i hög kruka och porös jord. Står i knopp länge.",
+    amountInStock: 100,
+    reviews: [
+      {
+        id: 10,
+        author: "Vicki",
+        stars: 4,
+        title: "fin blomma",
+        body: "Blommar ok, ok färg men lite hängig",
+      },
+    ],
+  },
+  {
+    id: 11,
+    name: "Inkakrona",
+    price: 249,
+    imgUrl:
+      "https://www.blomsterlandet.se/optimized/c-ProductDetailsSingle-Default-Sm1x/c6ebb417/globalassets/catalog-images/7/5189/a444d8be8e38e7f7094aaed08831f424.jpg",
+    description: "En lättskött växt med vackra färgkontraster.",
+    longDescription:
+      "Inkakrona trivs bäst i varm och fuktig luft. Skona den från temperaturer under 16° och från torr luft. Jorden bör inte torka ut. Ge endast svaga doser näring. Blommar mitt i vintern, axen håller mycket länge. Inkakronan kan delas vid behov och är flerårig.",
+    amountInStock: 100,
+    reviews: [
+      {
+        id: 11,
+        author: "Matilda",
+        stars: 3,
+        title: "Ok blomma",
+        body: "Blommar sådär, ok färg och ok storlek.",
+      },
+    ],
+  },
+  {
+    id: 12,
+    name: "Cyklamen",
+    price: 59.99,
+    imgUrl:
+      "https://www.blomsterlandet.se/optimized/c-ProductDetailsSingle-Default-Lg1x/740e4c94/globalassets/catalog-images/7/56589/ec843eb82e100fcb6a2509c81fac1ea1.jpg",
+    description:
+      "Cyklamen tillhör de växter som bara finns en del av året, kanske är det därför den är så efterlängtad och så omtyckt. Här i en fin röd nyans",
+    longDescription:
+      "Ju svalare plats desto bättre. Aldrig över direkt värme. Vattna med tunn stråle i krukans kant, inte på knölen eller i plantan. Vissna stjälkar snurras ett par varv och dras upp med ett ryck. Fin ute, till exempel i höstkruka och på gravplats, klarar kyla men inte ihållande frost.",
+    amountInStock: 100,
+    reviews: [
+      {
+        id: 12,
+        author: "Pelle",
+        stars: 4,
+        title: "Bra blomma",
+        body: "Blommar ok, ok färg, liten storlek.",
+      },
+    ],
+  },
 ];
 
 export { data };

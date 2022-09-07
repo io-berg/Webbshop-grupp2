@@ -2,16 +2,15 @@ import { Box, Container, CssBaseline, List, Typography } from "@mui/material";
 import React, { FC } from "react";
 import ProductPageCard from "../components/ProductPage/ProductPageCard";
 import ReviewCard from "../components/ProductPage/ReviewCard";
-import { data } from "../utils/mockData";
 import NavCrumbs from "../components/NavCrumbs";
 import { useParams } from "react-router-dom";
 import { useProducts } from "../contexts/ProductContext";
 
 const ProductPage: FC = () => {
   const { products } = useProducts();
-  const product = products.find((p) => p.id === Number(params.Id));
   const params = useParams<{ Id: string }>();
-  /*const product = data.find((p) => p.id === Number(params.Id));*/
+  const product = products.find((p) => p.id === Number(params.Id));
+
   if (product) {
     return (
       <React.Fragment>

@@ -10,7 +10,7 @@ const CartPage: FC= () => {
             <NavCrumbs
             crumbs={[
                 { name: "Home", path:"/"},
-                { name: "cart", path: "/Cart"},
+                { name: "Cart", path: "/Cart"},
 
             ]}
             />

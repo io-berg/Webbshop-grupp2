@@ -11,10 +11,10 @@ const Layout: FC<Props> = ({ admin }) => {
   return (
     <div>
       <Header admin={admin} />
-      <main>
+      <main className="min-h-[calc(100vh-15rem)]">
         <Outlet />
       </main>
-      <Footer />
+      {!admin && <Footer />}
     </div>
   );
 };

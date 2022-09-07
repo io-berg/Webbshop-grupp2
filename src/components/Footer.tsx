@@ -1,8 +1,7 @@
 import { FC } from "react";
-import { BottomNavigation } from "@mui/material";
 import Box from "@mui/material/Box";
 
-const Footer: FC = ({}) => {
+const Footer: FC = () => {
   return (
     <Box
       sx={{

@@ -82,6 +82,88 @@ const data: Product[] = [
       },
     ],
   },
+  {
+    id: 5,
+    name: "Brudorkidé",
+    price: 149,
+    imgUrl:
+      "https://www.blomsterlandet.se/optimized/c-ProductDetailsSingle-Default-Lg1x/11416a19/globalassets/catalog-images/7/4159/faccd26e9fd61a18ee7fc369970c83c0.jpg",
+    description:
+      "Underbart vacker, otroligt riklig blomning, med små blommor på välförgrenade stänglar.",
+    longDescription:
+      "Brudorkidén har ingen viloperiod, utan kan blomma när som helst på året. Låt stängeln vissna själv, klipp bort den torra delen så brukar det komma nya skott och nya blommor.",
+    amountInStock: 100,
+    reviews: [
+      {
+        id: 5,
+        author: "Kalle",
+        stars: 4,
+        title: "Mycket bra",
+        body: "Blommar bra, ok färg och ok storlek.",
+      },
+    ],
+  },
+  {
+    id: 6,
+    name: "Bukettbouvardia",
+    price: 79.99,
+    imgUrl:
+      "https://www.blomsterlandet.se/optimized/c-ProductDetailsSingle-Default-Sm1x/2a1913ee/globalassets/catalog-images/7/21330/ffedc6479f98429041060569f3c21667.jpg",
+    description: "Blommar med små, söta vita blommor samlade i flock.",
+    longDescription:
+      "Trivs på ljus växtplats men undvik direkt sol. Placeras gärna något svalare på vintern och vattnas då sparsamt. Planteras om på våren. Håller fint som snittblomma.",
+    amountInStock: 100,
+    reviews: [
+      {
+        id: 6,
+        author: "Kalle",
+        stars: 3,
+        title: "Ok blomma",
+        body: "Blommar ok, ok färg och ok storlek.",
+      },
+    ],
+  },
+  {
+    id: 7,
+    name: "Rosenkalla",
+    price: 149,
+    imgUrl:
+      "https://www.blomsterlandet.se/optimized/c-ProductDetailsSingle-Default-Sm1x/775d1217/globalassets/catalog-images/7/1380/7bbad16b65efcab098a308c1e9f1665e.jpg",
+    description: "Elegant växt med luftrenande egenskaper.",
+    longDescription:
+      "Håll rothalsen täckt med fuktig jord eller mossa, det främjar blomningen. Planteras om i lucker, porös jord och djupt i hög kruka. Vill stå ljust men inte i stark sol. Känslig för temperaturer under 15° och ska vattnas med ljummet vatten. Blomvillig växt med hållbara blommor. Lättskött och flerårig.",
+    amountInStock: 100,
+    reviews: [
+      {
+        id: 7,
+        author: "Kalle",
+        stars: 3,
+        title: "Ok blomma",
+        body: "Blommar ok, ok färg och ok storlek.",
+      },
+    ],
+  },
+  {
+    id: 8,
+    name: "Våreld",
+    price: 39.99,
+    imgUrl:
+      "https://www.blomsterlandet.se/optimized/c-ProductDetailsSingle-Default-Sm1x/179b8018/globalassets/catalog-images/7/20897/55ef699d31a5f8faaf93d1bb7970a15b.jpg",
+    description:
+      "En lättskött och tålig klassiker som blommar länge med knippen av söta, rosa blommor.",
+    longDescription:
+      "En ljus och solig placering ger den längsta blomningen och blomfärgen blir klarare. Eftersom vårelden är en suckulent tål den både torka och torr luft och passar utmärkt i vårt inomhusklimat. Låt jorden torka ut mellan rikliga vattningar men undvik att vatten blir stående i krukan eller på fatet. Kan placeras utomhus sommartid, bladen bli vackert rödskimrande av starkt solljus.",
+    amountInStock: 100,
+    reviews: [
+      {
+        id: 8,
+        author: "Kalle",
+        stars: 3,
+        title: "Ok blomma",
+        body: "Blommar ok, ok färg och ok storlek.",
+      },
+    ],
+  },
 ];
 
 export { data };

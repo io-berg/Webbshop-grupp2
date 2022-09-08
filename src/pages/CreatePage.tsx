@@ -15,11 +15,7 @@ const CreatePage: FC = () => {
   const handleSubmit = (values: ProductCreate) => {
     //add confirmation that all worked
     addProduct(values);
-    addNewSnack({
-      message: "Produkt är nu skapad",
-      color: "success",
-      open: true,
-    });
+
     navigate("/admin");
   };
   return (

@@ -9,7 +9,7 @@ export interface Snack {
 
 interface ContextValue {
   snack: Snack;
-  addNewSnack: (snack: Snack) => void;
+  addNewSnack: (message: string, color: AlertColor) => void;
   handleClose: (reason?: string) => void;
 }
 
@@ -44,14 +44,18 @@ function SnackProvider({ children }: Props) {
     setSnack({ ...snack, open: false });
   };
 
-  const addNewSnack = (snack: Snack) => {
+  const addNewSnack = (message: string, color: AlertColor) => {
     setSnack({
       message: "",
       color: "error",
       open: false,
     });
 
-    setSnack(snack);
+    setSnack({
+      message: message,
+      color: color,
+      open: true,
+    });
   };
 
   return (

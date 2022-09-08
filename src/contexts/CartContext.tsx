@@ -61,12 +61,10 @@ function CartProvider({ children }: Props) {
       });
     }
 
-    addNewSnack({
-      message:
-        "Du har lagt till " + amount + " " + product.name + " till kundvagnen",
-      color: "success",
-      open: true,
-    });
+    addNewSnack(
+      `${amount} ${product.name} har lagts till i kundvagnen`,
+      "success"
+    );
 
     setCartItems(newCartItems);
   };

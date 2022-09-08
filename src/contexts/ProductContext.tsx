@@ -51,23 +51,23 @@ function ProductProvider({ children }: Props) {
       id: generateProductId(),
       reviews: [],
     };
+
+    addNewSnack(`${product.name} har lagts till.`, "success");
     setProducts((prevState) => [...prevState, newProduct]);
   };
 
   const removeProduct = (product: Product) => {
     setProducts((prevState) => prevState.filter((p) => p.id !== product.id));
 
-    addNewSnack({
-      message: product.name + " är nu borttagen",
-      color: "success",
-      open: true,
-    });
+    addNewSnack(`${product.name} har tagits bort`, "success");
   };
 
   const editProduct = (product: Product) => {
     setProducts((prevState) =>
       prevState.map((p) => (p.id === product.id ? product : p))
     );
+
+    addNewSnack(`${product.name} har updaterats`, "success");
   };
 
   const generateProductId = () => {

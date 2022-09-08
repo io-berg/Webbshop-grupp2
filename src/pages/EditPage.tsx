@@ -23,11 +23,6 @@ const EditPage: FC = () => {
       };
       //add confirmation that all worked
       editProduct(editedProduct);
-      addNewSnack({
-        message: "Produkt är nu ändrad",
-        color: "success",
-        open: true,
-      });
       navigate("/admin");
     };
     return (

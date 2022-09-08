@@ -18,14 +18,20 @@ interface Props {
   product: Product;
   handleDelete: (product: Product) => void;
   handleEdit: (product: Product) => void;
+  gray: boolean;
 }
 
-const MobileRow: FC<Props> = ({ product, handleEdit, handleDelete }) => {
+const MobileRow: FC<Props> = ({ product, handleEdit, handleDelete, gray }) => {
   const [open, setOpen] = useState(false);
+
+  const rowStyle = {
+    backgroundColor: gray ? "#f9f9f9" : "white",
+    "& > *": { borderBottom: "unset" },
+  };
 
   return (
     <>
-      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+      <TableRow sx={rowStyle}>
         <TableCell component="th" scope="row" size="small" width={"20px"}>
           {product.id}
         </TableCell>
@@ -44,22 +50,22 @@ const MobileRow: FC<Props> = ({ product, handleEdit, handleDelete }) => {
           </IconButton>
         </TableCell>
       </TableRow>
-      <TableRow>
+      <TableRow sx={{ backgroundColor: gray ? "#f9f9f9" : "white" }}>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="body1" component="div">
-                Beskrivning:
-              </Typography>
-              <Typography variant="body2" gutterBottom component="div">
-                {product.description}
-              </Typography>
               <Typography variant="body2" component="div">
-                Pris: {product.price}
+                <span className="font-bold">Beskrivning: </span>
+                {product.description}
               </Typography>
 
               <Typography variant="body2" component="div">
-                I Lager: {product.amountInStock}
+                <span className="font-bold">Pris: </span> {product.price}
+              </Typography>
+
+              <Typography variant="body2" component="div">
+                <span className="font-bold">Lager saldo: </span>{" "}
+                {product.amountInStock}
               </Typography>
 
               <div className="flex w-full justify-end">

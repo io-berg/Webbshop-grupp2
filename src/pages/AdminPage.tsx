@@ -80,14 +80,15 @@ const AdminPage: FC = () => {
           aria-label="add"
           onClick={handleClickAdd}
           sx={{
-            position: "absolute",
-            bottom: 34,
-            right: 10,
+            position: "fixed",
+            bottom: 16,
+            right: 16,
           }}
         >
           <AddIcon />
         </Fab>
       )}
+      <div className="h-20" />
     </>
   );
 };

@@ -9,11 +9,11 @@ import "./styles/global.css";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ProductProvider>
-        <SnackProvider>
+      <SnackProvider>
+        <ProductProvider>
           <App />
-        </SnackProvider>
-      </ProductProvider>
+        </ProductProvider>
+      </SnackProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

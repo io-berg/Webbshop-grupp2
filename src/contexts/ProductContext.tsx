@@ -7,6 +7,7 @@ import {
 } from "react";
 import { data } from "../utils/mockData";
 import { Product, ProductCreate } from "../utils/types";
+import { useSnack } from "./SnackContext";
 
 interface ContextValue {
   products: Product[];
@@ -42,6 +43,8 @@ function ProductProvider({ children }: Props) {
     }
   });
 
+  const { addNewSnack } = useSnack();
+
   const addProduct = (product: ProductCreate) => {
     const newProduct: Product = {
       ...product,
@@ -53,6 +56,12 @@ function ProductProvider({ children }: Props) {
 
   const removeProduct = (product: Product) => {
     setProducts((prevState) => prevState.filter((p) => p.id !== product.id));
+
+    addNewSnack({
+      message: product.name + " är nu borttagen",
+      color: "success",
+      open: true,
+    });
   };
 
   const editProduct = (product: Product) => {

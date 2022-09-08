@@ -45,6 +45,12 @@ function SnackProvider({ children }: Props) {
   };
 
   const addNewSnack = (snack: Snack) => {
+    setSnack({
+      message: "",
+      color: "error",
+      open: false,
+    });
+
     setSnack(snack);
   };
 

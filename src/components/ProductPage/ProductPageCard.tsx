@@ -1,4 +1,5 @@
-import { FC } from "react";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import {
   Button,
   ButtonGroup,
@@ -6,13 +7,12 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Grid,
   Typography,
 } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-import { Product } from "../../utils/types";
+import React, { FC } from "react";
 import { useCart } from "../../contexts/CartContext";
-import React from "react";
+import { Product } from "../../utils/types";
 
 interface Props {
   product: Product;
@@ -22,12 +22,19 @@ const ProductPageCard: FC<Props> = ({ product }) => {
   const [count, setCount] = React.useState(1);
   const cart = useCart();
   return (
-    <div className="flex flex-col p-1">
-      <div className="flex ">
-        <Card sx={{ minWidth: 375 }}>
-          <CardMedia component="img" height="100" image={product.imgUrl} />
+    <Grid container>
+      <Grid item className="flex ">
+        <Card className="max-w-10">
+          <CardMedia
+            component="img"
+            image={product.imgUrl}
+            alt={"Bild på en " + product.name}
+            sx={{ width: "50%" }}
+          />
         </Card>
-        <Card sx={{ minWidth: 375 }}>
+      </Grid>
+      <Grid item>
+        <Card>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {product.name}
@@ -64,9 +71,9 @@ const ProductPageCard: FC<Props> = ({ product }) => {
             </Button>
           </CardActions>
         </Card>
-      </div>
+      </Grid>
 
-      <div className="flex  ">
+      <div className="flex">
         <Card sx={{ minWidth: 375 }}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -79,7 +86,7 @@ const ProductPageCard: FC<Props> = ({ product }) => {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </Grid>
   );
 };
 

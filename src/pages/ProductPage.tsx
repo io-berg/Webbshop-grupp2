@@ -1,9 +1,9 @@
-import { Box, Container, CssBaseline, List, Typography } from "@mui/material";
-import React, { FC } from "react";
-import ProductPageCard from "../components/ProductPage/ProductPageCard";
-import ReviewCard from "../components/ProductPage/ReviewCard";
-import NavCrumbs from "../components/NavCrumbs";
+import { Card, Container, Grid, List, Typography } from "@mui/material";
+import { FC } from "react";
 import { useParams } from "react-router-dom";
+import NavCrumbs from "../components/NavCrumbs";
+import ProductInfo from "../components/ProductPage/ProductInfo";
+import ReviewCard from "../components/ProductPage/ReviewCard";
 import { useProducts } from "../contexts/ProductContext";
 
 const ProductPage: FC = () => {
@@ -13,36 +13,35 @@ const ProductPage: FC = () => {
 
   if (product) {
     return (
-      <React.Fragment>
-        <CssBaseline />
-        <Container fixed>
-          <Box sx={{ bgcolor: "FFFFFF", widht: "100%", height: "100%" }}>
-            <NavCrumbs
-              crumbs={[
-                { name: "Home", path: "/" },
-                { name: "Product", path: "/product/${params.Id}" },
-              ]}
-            />
-            <ProductPageCard product={product} />
-          </Box>
-          <Box
-            sx={{
-              bgcolor: "#FFFFFF",
-              widht: "100%",
-              height: "auto",
-              flexDirection: "column",
-            }}
-          >
-            <List>
-              {product.reviews.map((review) => (
-                <div key={review.id}>
-                  <ReviewCard review={review} />
-                </div>
-              ))}
-            </List>
-          </Box>
-        </Container>
-      </React.Fragment>
+      <Container>
+        <NavCrumbs
+          crumbs={[
+            { name: "Home", path: "/" },
+            { name: "Product", path: "/product/${params.Id}" },
+          ]}
+        />
+        <Card>
+          <Grid container>
+            <Grid item xs={5} md={5}>
+              <img src={product.imgUrl} alt={"Bild på en " + product.name} />
+            </Grid>
+            <Grid item xs={7} md={7}>
+              <ProductInfo product={product} />
+            </Grid>
+
+            <Grid item xs={12} md={12}>
+              <Typography variant="h6">Reviews</Typography>
+              <List>
+                {product.reviews.map((review) => (
+                  <div key={review.id}>
+                    <ReviewCard review={review} />
+                  </div>
+                ))}
+              </List>
+            </Grid>
+          </Grid>
+        </Card>
+      </Container>
     );
   }
   return (

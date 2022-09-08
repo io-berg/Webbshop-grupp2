@@ -8,15 +8,19 @@ export interface Snack {
 }
 
 interface ContextValue {
-  snack: Snack[];
+  snack: Snack;
   addNewSnack: (snack: Snack) => void;
-  handleClose: () => void;
+  handleClose: (reason?: string) => void;
 }
 
 const SnackContext = createContext<ContextValue>({
-  snack: [],
-  addNewSnack(snack) {
-    console.log("error:" + snack.message);
+  snack: {
+    message: "You forgot to add the SnackProvider",
+    color: "error",
+    open: true,
+  },
+  addNewSnack: () => {
+    console.log("You forgot to add the SnackProvider");
   },
   handleClose: () => {
     console.log("något gick fel");
@@ -28,14 +32,20 @@ interface Props {
 }
 
 function SnackProvider({ children }: Props) {
-  const [snack, setSnack] = useState<Snack[]>([]);
+  const [snack, setSnack] = useState<Snack>({
+    message: "",
+    color: "error",
+    open: false,
+  });
 
-  const addNewSnack = (newSnack: Snack) => {
-    setSnack((prevState) => [...prevState, newSnack]);
+  const handleClose = (reason?: string) => {
+    if (reason === "clickaway") return;
+
+    setSnack({ ...snack, open: false });
   };
 
-  const handleClose = () => {
-    setSnack((prevState) => prevState.slice(1));
+  const addNewSnack = (snack: Snack) => {
+    setSnack(snack);
   };
 
   return (

@@ -39,7 +39,10 @@ const CartIcon = () => {
     <IconButton onClick={() => navigate("/cart")}>
       <ShoppingCartIcon sx={{ color: "white" }} />
       <Badge
-        badgeContent={cart.cartItems.length}
+        badgeContent={cart.cartItems.reduce(
+          (acc, item) => acc + item.quantity,
+          0
+        )}
         color="secondary"
         sx={animate ? style : null}
         variant="standard"

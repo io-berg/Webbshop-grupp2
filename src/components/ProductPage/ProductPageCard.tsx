@@ -1,20 +1,25 @@
 import { FC } from "react";
 import {
   Button,
+  ButtonGroup,
   Card,
   CardActions,
   CardContent,
   CardMedia,
   Typography,
 } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import { Product } from "../../utils/types";
 import { useCart } from "../../contexts/CartContext";
+import React from "react";
 
 interface Props {
   product: Product;
 }
 
 const ProductPageCard: FC<Props> = ({ product }) => {
+  const [count, setCount] = React.useState(1);
   const cart = useCart();
   return (
     <div className="flex flex-col p-1">
@@ -35,7 +40,26 @@ const ProductPageCard: FC<Props> = ({ product }) => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button onClick={() => cart.addCartItem(product)}>
+            <ButtonGroup>
+              <Button
+                aria-label="reduce"
+                onClick={() => {
+                  setCount(Math.max(count - 1, 0));
+                }}
+              >
+                <RemoveIcon fontSize="small" />
+              </Button>
+              <Button>{count}</Button>
+              <Button
+                aria-label="increase"
+                onClick={() => {
+                  setCount(count + 1);
+                }}
+              >
+                <AddIcon fontSize="small" />
+              </Button>
+            </ButtonGroup>
+            <Button onClick={() => cart.addCartItem(product, count)}>
               Lägg till i varukorgen{" "}
             </Button>
           </CardActions>

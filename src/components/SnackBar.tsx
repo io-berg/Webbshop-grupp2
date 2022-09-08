@@ -5,26 +5,19 @@ const SnackBarComponent = () => {
   const { snack, handleClose } = useSnack();
 
   return (
-    <div>
-      {snack.map((s) => {
-        return (
-          <Snackbar
-            key={snack.indexOf(s)}
-            open={s.open}
-            autoHideDuration={6000}
-            onClose={handleClose}
-          >
-            <Alert
-              onClose={handleClose}
-              severity={s.color}
-              sx={{ width: "100%" }}
-            >
-              {s.message}
-            </Alert>
-          </Snackbar>
-        );
-      })}
-    </div>
+    <Snackbar
+      open={snack.open}
+      autoHideDuration={3000}
+      onClose={(e, r) => handleClose(r)}
+    >
+      <Alert
+        severity={snack.color}
+        sx={{ width: "100%" }}
+        onClose={() => handleClose()}
+      >
+        {snack.message}
+      </Alert>
+    </Snackbar>
   );
 };
 export default SnackBarComponent;

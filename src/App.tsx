@@ -5,6 +5,7 @@ import AdminPage from "./pages/AdminPage";
 import CreatePage from "./pages/CreatePage";
 import EditPage from "./pages/EditPage";
 import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
 import ProductPage from "./pages/ProductPage";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       >
         <Route index element={<HomePage />} />
         <Route path="product/:Id" element={<ProductPage />} />
+        <Route path="*" element={<NotFoundPage />} />
 
         {/* Regular pages go here ^ */}
       </Route>

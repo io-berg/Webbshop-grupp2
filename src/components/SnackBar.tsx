@@ -20,4 +20,5 @@ const SnackBarComponent = () => {
     </Snackbar>
   );
 };
+
 export default SnackBarComponent;

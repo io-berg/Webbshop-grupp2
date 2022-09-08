@@ -41,7 +41,7 @@ const HomeCard: FC<Props> = ({ product }) => {
       </CardActionArea>
       <CardActions>
         <Button
-          onClick={() => cart.addCartItem(product)}
+          onClick={() => cart.addCartItem(product, 1)}
           size="small"
           color="primary"
         >

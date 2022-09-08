@@ -9,7 +9,7 @@ import { CartItem, Product } from "../utils/types";
 
 interface ContextValue {
   cartItems: CartItem[];
-  addCartItem: (product: Product) => void;
+  addCartItem: (product: Product, amount: number) => void;
   removeCartItem: (id: number) => void;
   updateItemQuantity: (id: number, quantity: number) => void;
 }
@@ -46,15 +46,15 @@ function CartProvider({ children }: Props) {
     return id;
   };
 
-  const addCartItem = (product: Product) => {
+  const addCartItem = (product: Product, amount: number) => {
     const newCartItems = [...cartItems];
     const item = newCartItems.find((item) => item.product.id === product.id);
-    if (item) item.quantity++;
+    if (item) item.quantity += amount;
     else {
       newCartItems.push({
         id: generateCartItemId(),
         product,
-        quantity: 1,
+        quantity: amount,
       });
     }
 

@@ -25,7 +25,7 @@ const HomeCard: FC<Props> = ({ product }) => {
           component="img"
           height="140"
           image={product.imgUrl}
-          alt="green iguana"
+          alt={"Bild på en " + product.name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

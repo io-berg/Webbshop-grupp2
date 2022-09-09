@@ -1,5 +1,3 @@
-import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import {
   Box,
   Button,
@@ -20,6 +18,7 @@ import {
 } from "@mui/material";
 import { FC, useState } from "react";
 import { Product } from "../../utils/types";
+import DesktopRow from "./DesktopRow";
 import MobileRow from "./MobileRow";
 import SortableTableColumnHead from "./SortableTableColumnHead";
 
@@ -151,6 +150,7 @@ const ProductTable: FC<Props> = ({
                   />
                 </>
               )}
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -160,43 +160,19 @@ const ProductTable: FC<Props> = ({
                   <MobileRow
                     product={product}
                     key={idx}
+                    gray={idx % 2 === 0}
                     handleDelete={handleDelete}
                     handleEdit={handleEdit}
                   />
                 );
               return (
-                <TableRow
-                  key={product.id}
-                  sx={idx % 2 == 0 ? { backgroundColor: "#f9f9f9" } : {}}
-                >
-                  <TableCell>{product.id}</TableCell>
-                  <TableCell>{product.name}</TableCell>
-                  <TableCell>
-                    <div className="flex w-200px nowrap text-ellipsis">
-                      {product.description}
-                    </div>
-                  </TableCell>
-                  <TableCell>{product.price}</TableCell>
-                  <TableCell>{product.amountInStock}</TableCell>
-                  <TableCell>
-                    <div className="flex">
-                      <Button
-                        color="info"
-                        size="small"
-                        onClick={() => handleEdit(product)}
-                      >
-                        <EditOutlinedIcon />
-                      </Button>
-                      <Button
-                        color="error"
-                        size="small"
-                        onClick={() => handleDelete(product)}
-                      >
-                        <DeleteForeverOutlinedIcon />
-                      </Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
+                <DesktopRow
+                  product={product}
+                  key={idx}
+                  gray={idx % 2 === 0}
+                  handleDelete={handleDelete}
+                  handleEdit={handleEdit}
+                />
               );
             })}
           </TableBody>

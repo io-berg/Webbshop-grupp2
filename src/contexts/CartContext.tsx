@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import { CartItem, Product } from "../utils/types";
+import { useSnack } from "./SnackContext";
 
 interface ContextValue {
   cartItems: CartItem[];
@@ -41,6 +42,8 @@ function CartProvider({ children }: Props) {
     }
   });
 
+  const { addNewSnack } = useSnack();
+
   const generateCartItemId = (): number => {
     const id = Math.max(...cartItems.map((item) => item.id), 0) + 1;
     return id;
@@ -57,6 +60,11 @@ function CartProvider({ children }: Props) {
         quantity: amount,
       });
     }
+
+    addNewSnack(
+      `${amount} ${product.name} har lagts till i kundvagnen`,
+      "success"
+    );
 
     setCartItems(newCartItems);
   };

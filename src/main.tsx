@@ -11,11 +11,13 @@ import theme from "./components/Theme";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ProductProvider>
-        <SnackProvider>
-          <App />
-        </SnackProvider>
-      </ProductProvider>
+      <ThemeProvider theme={theme}>
+        <ProductProvider>
+          <SnackProvider>
+            <App />
+          </SnackProvider>
+        </ProductProvider>
+      </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

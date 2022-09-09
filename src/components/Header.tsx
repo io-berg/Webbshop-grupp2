@@ -1,5 +1,6 @@
 import { AppBar, Container, Toolbar, Typography } from "@mui/material";
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import "../styles/header.css";
 import CartIcon from "./CartIcon";
 
@@ -9,31 +10,20 @@ interface Props {
 
 const Header: FC<Props> = ({ admin }) => {
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <div className="flex justify-between w-full">
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              BLOMMOR
-            </Typography>
+    <header>
+      <AppBar position="static">
+        <Container>
+          <Toolbar disableGutters className="flex justify-between">
+            <Link to="/">
+              <Typography variant="h6" fontWeight="bold" letterSpacing={1.2}>
+                BLOMMOR
+              </Typography>
+            </Link>
             {!admin ? <CartIcon /> : null}
-          </div>
-        </Toolbar>
-      </Container>
-    </AppBar>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </header>
   );
 };
 

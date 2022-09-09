@@ -52,14 +52,14 @@ function ProductProvider({ children }: Props) {
       reviews: [],
     };
 
-    addNewSnack(`${product.name} har lagts till.`, "success");
+    addNewSnack(`${product.name} har lagts till.`, "success", 4000);
     setProducts((prevState) => [...prevState, newProduct]);
   };
 
   const removeProduct = (product: Product) => {
     setProducts((prevState) => prevState.filter((p) => p.id !== product.id));
 
-    addNewSnack(`${product.name} har tagits bort`, "success");
+    addNewSnack(`${product.name} har tagits bort`, "success", 4000);
   };
 
   const editProduct = (product: Product) => {
@@ -67,7 +67,7 @@ function ProductProvider({ children }: Props) {
       prevState.map((p) => (p.id === product.id ? product : p))
     );
 
-    addNewSnack(`${product.name} har updaterats`, "success");
+    addNewSnack(`${product.name} har updaterats`, "success", 4000);
   };
 
   const generateProductId = () => {

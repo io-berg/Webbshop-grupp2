@@ -1,9 +1,16 @@
-import { Box, Container, CssBaseline, List, Typography } from "@mui/material";
-import React, { FC } from "react";
-import ProductPageCard from "../components/ProductPage/ProductPageCard";
-import ReviewCard from "../components/ProductPage/ReviewCard";
-import NavCrumbs from "../components/NavCrumbs";
+import {
+  Box,
+  Card,
+  CardMedia,
+  Container,
+  Divider,
+  Typography,
+} from "@mui/material";
+import { FC } from "react";
 import { useParams } from "react-router-dom";
+import NavCrumbs from "../components/NavCrumbs";
+import ProductInfo from "../components/ProductPage/ProductInfo";
+import ReviewsContainer from "../components/ProductPage/ReviewsContainer";
 import { useProducts } from "../contexts/ProductContext";
 
 const ProductPage: FC = () => {
@@ -13,36 +20,37 @@ const ProductPage: FC = () => {
 
   if (product) {
     return (
-      <React.Fragment>
-        <CssBaseline />
-        <Container fixed>
-          <Box sx={{ bgcolor: "FFFFFF", widht: "100%", height: "100%" }}>
-            <NavCrumbs
-              crumbs={[
-                { name: "Home", path: "/" },
-                { name: "Product", path: "/product/${params.Id}" },
-              ]}
-            />
-            <ProductPageCard product={product} />
+      <Container className="pt-5">
+        <NavCrumbs
+          crumbs={[
+            { name: "Home", path: "/" },
+            { name: "Product", path: "/product/${params.Id}" },
+          ]}
+        />
+        <Card className="p-6">
+          <Box className="flex flex-col w-full lg:flex-row">
+            <div className="w-full lg:w-1/2">
+              <CardMedia
+                component="img"
+                src={product.imgUrl}
+                alt={"Bild på en " + product.name}
+                sx={{ width: "100%", objectFit: "fill" }}
+              />
+            </div>
+            <ProductInfo product={product} />
           </Box>
-          <Box
-            sx={{
-              bgcolor: "#FFFFFF",
-              widht: "100%",
-              height: "auto",
-              flexDirection: "column",
-            }}
-          >
-            <List>
-              {product.reviews.map((review) => (
-                <div key={review.id}>
-                  <ReviewCard review={review} />
-                </div>
-              ))}
-            </List>
+          <Divider variant="middle" sx={{ marginBottom: 3, marginTop: 3 }} />
+          <Box className="flex flex-col lg:flex-row">
+            <Box className="w-full pr-3 pb-5 lg:w-1/2">
+              <Typography variant="h5">Detailjer</Typography>
+              <Typography variant="body1">{product.longDescription}</Typography>
+            </Box>
+            <ReviewsContainer reviews={product.reviews} />
           </Box>
-        </Container>
-      </React.Fragment>
+          <div className="h-10" />
+        </Card>
+        <div className="h-20" />
+      </Container>
     );
   }
   return (

@@ -1,9 +1,16 @@
-import { Card, Container, Grid, List, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardMedia,
+  Container,
+  Divider,
+  Typography,
+} from "@mui/material";
 import { FC } from "react";
 import { useParams } from "react-router-dom";
 import NavCrumbs from "../components/NavCrumbs";
 import ProductInfo from "../components/ProductPage/ProductInfo";
-import ReviewCard from "../components/ProductPage/ReviewCard";
+import ReviewsContainer from "../components/ProductPage/ReviewsContainer";
 import { useProducts } from "../contexts/ProductContext";
 
 const ProductPage: FC = () => {
@@ -13,34 +20,36 @@ const ProductPage: FC = () => {
 
   if (product) {
     return (
-      <Container>
+      <Container className="pt-5">
         <NavCrumbs
           crumbs={[
             { name: "Home", path: "/" },
             { name: "Product", path: "/product/${params.Id}" },
           ]}
         />
-        <Card>
-          <Grid container>
-            <Grid item xs={5} md={5}>
-              <img src={product.imgUrl} alt={"Bild på en " + product.name} />
-            </Grid>
-            <Grid item xs={7} md={7}>
-              <ProductInfo product={product} />
-            </Grid>
-
-            <Grid item xs={12} md={12}>
-              <Typography variant="h6">Reviews</Typography>
-              <List>
-                {product.reviews.map((review) => (
-                  <div key={review.id}>
-                    <ReviewCard review={review} />
-                  </div>
-                ))}
-              </List>
-            </Grid>
-          </Grid>
+        <Card className="p-6">
+          <Box className="flex flex-col w-full lg:flex-row">
+            <div className="w-full lg:w-1/2">
+              <CardMedia
+                component="img"
+                src={product.imgUrl}
+                alt={"Bild på en " + product.name}
+                sx={{ width: "100%", objectFit: "fill" }}
+              />
+            </div>
+            <ProductInfo product={product} />
+          </Box>
+          <Divider variant="middle" sx={{ marginBottom: 3, marginTop: 3 }} />
+          <Box className="flex flex-col lg:flex-row">
+            <Box className="w-full pr-3 pb-5 lg:w-1/2">
+              <Typography variant="h5">Detailjer</Typography>
+              <Typography variant="body1">{product.longDescription}</Typography>
+            </Box>
+            <ReviewsContainer reviews={product.reviews} />
+          </Box>
+          <div className="h-10" />
         </Card>
+        <div className="h-20" />
       </Container>
     );
   }

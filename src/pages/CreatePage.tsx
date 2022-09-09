@@ -4,13 +4,11 @@ import { useNavigate } from "react-router-dom";
 import NavCrumbs from "../components/NavCrumbs";
 import ProductForm from "../components/ProductForm";
 import { useProducts } from "../contexts/ProductContext";
-import { useSnack } from "../contexts/SnackContext";
 import { ProductCreate } from "../utils/types";
 
 const CreatePage: FC = () => {
   const navigate = useNavigate();
   const { addProduct } = useProducts();
-  const { addNewSnack } = useSnack();
 
   const handleSubmit = (values: ProductCreate) => {
     //add confirmation that all worked

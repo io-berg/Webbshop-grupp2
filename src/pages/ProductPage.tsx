@@ -42,7 +42,7 @@ const ProductPage: FC = () => {
           <Divider variant="middle" sx={{ marginBottom: 3, marginTop: 3 }} />
           <Box className="flex flex-col lg:flex-row">
             <Box className="w-full pr-3 pb-5 lg:w-1/2">
-              <Typography variant="h5">Detailjer</Typography>
+              <Typography variant="h5">Detaljer</Typography>
               <Typography variant="body1">{product.longDescription}</Typography>
             </Box>
             <ReviewsContainer reviews={product.reviews} />

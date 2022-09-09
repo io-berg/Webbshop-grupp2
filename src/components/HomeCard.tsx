@@ -40,13 +40,15 @@ const HomeCard: FC<Props> = ({ product }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button
-          onClick={() => cart.addCartItem(product, 1)}
-          size="small"
-          color="primary"
-        >
-          Lägg till i kundvagn{" "}
-        </Button>
+        <div className="flex flex-col gap-4 w-full">
+          <Button
+            onClick={() => cart.addCartItem(product, 1)}
+            size="small"
+            color="primary"
+          >
+            Lägg till i kundvagn{" "}
+          </Button>
+        </div>
       </CardActions>
     </Card>
   );

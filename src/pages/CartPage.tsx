@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 
 
 
+
+
 const CartPage: FC= () => {
 
     return (
@@ -23,12 +25,15 @@ const CartPage: FC= () => {
             <h1>
                 Hello CartPage 🛒
                 (Under construction)
-
             </h1>
 
-            <Stack spacing={2} direction="row">
+            <div>
+
+            </div>
+
+            <Stack spacing={2} direction="row" display="flex">
                 <Button variant="contained">Fortsätt</Button>
-                <Button variant="contained">Avbryt</Button>
+                <Button href="/" variant="contained">Avbryt</Button>
             </Stack>
 
             
@@ -49,17 +54,17 @@ const CartPage: FC= () => {
             noValidate
             autoComplete="off" >
 
-            <Stack spacing={2} direction="row">
+            <Stack spacing={2} direction="row" display="flex">
             <TextField id="FirstName" label="Förnamn" variant="standard" />
                 <TextField id="LastName" label="Efternamn" variant="standard" />
             </Stack>
 
-            <Stack spacing={2} direction="row">
+            <Stack spacing={2} direction="row" display="flex">
                 <TextField id="Adress" label="Adress" variant="standard" />
                 <TextField id="PostalNumber" label="Postnummer" variant="standard" />
             </Stack>
 
-            <Stack spacing={2} direction="row">
+            <Stack spacing={2} direction="row" display="flex">
                 <TextField id="Phonenumber" label="Mobilnummer" variant="standard" />
                 <TextField id="emailadress" label="Epost adress" variant="standard" />
             </Stack>
@@ -91,7 +96,7 @@ const CartPage: FC= () => {
 
             <Stack spacing={3} direction="row">
                 <Button variant="contained">Fortsätt till betalning</Button>
-                <Button variant="contained">Avbryt beställning</Button>
+                <Button href="/" variant="contained">Avbryt beställning</Button>
             </Stack>
 
             

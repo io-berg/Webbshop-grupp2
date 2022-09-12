@@ -65,9 +65,7 @@ const CartPage: FC= () => {
             </Stack>
 
 
-            <div>
-                <h1>Leverans och frakt</h1>
-            </div>
+
 
             <Stack spacing={2} direction="row">
                 <FormControl>

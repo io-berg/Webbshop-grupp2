@@ -21,7 +21,7 @@ const CartPage: FC= () => {
             ]}
             />
 
-        <Box>
+        <Box paddingBottom="2rem">
             <h1>
                 Hello CartPage 🛒
                 (Under construction)
@@ -52,7 +52,9 @@ const CartPage: FC= () => {
                 '@ .MuiTextField-root': {m: 1, width: '100%'},            
             }}
             noValidate
-            autoComplete="off" >
+            autoComplete="off"
+            paddingBottom="2rem"
+            paddingTop="1rem">
 
             <Stack spacing={2} direction="row" display="flex">
             <TextField id="FirstName" label="Förnamn" variant="standard" />
@@ -60,18 +62,21 @@ const CartPage: FC= () => {
             </Stack>
 
             <Stack spacing={2} direction="row" display="flex">
-                <TextField id="Adress" label="Adress" variant="standard" />
-                <TextField id="PostalNumber" label="Postnummer" variant="standard" />
-            </Stack>
-
-            <Stack spacing={2} direction="row" display="flex">
                 <TextField id="Phonenumber" label="Mobilnummer" variant="standard" />
                 <TextField id="emailadress" label="Epost adress" variant="standard" />
             </Stack>
 
+            <Stack spacing={2} direction="row" display="flex">
+                <TextField id="Postadress" label="Postadress" variant="standard"/>
+                <TextField id="PostalNumber" label="Postnummer" variant="standard" />
+            </Stack>
+
+            </Box>
 
 
 
+
+            <Box paddingBottom="1rem">
             <Stack spacing={2} direction="row">
                 <FormControl>
                     <FormLabel id="shippingAnddeliveryOptions">Leveransalternativ</FormLabel>
@@ -86,9 +91,6 @@ const CartPage: FC= () => {
                     </RadioGroup>
                 </FormControl>
             </Stack>
-
-
-
 
             </Box>
 

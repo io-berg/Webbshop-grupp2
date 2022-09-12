@@ -4,9 +4,7 @@ import { FC } from "react";
 import NavCrumbs from "../components/NavCrumbs";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-
-
-
+import CartTable from "../components/CartTable";
 
 
 const CartPage: FC= () => {
@@ -28,13 +26,10 @@ const CartPage: FC= () => {
             </h1>
 
             <div>
+                <CartTable></CartTable>
 
             </div>
 
-            <Stack spacing={2} direction="row" display="flex">
-                <Button variant="contained">Fortsätt</Button>
-                <Button href="/" variant="contained">Avbryt</Button>
-            </Stack>
 
             
 
@@ -67,7 +62,7 @@ const CartPage: FC= () => {
             </Stack>
 
             <Stack spacing={2} direction="row" display="flex">
-                <TextField id="Postadress" label="Postadress" variant="standard"/>
+                <TextField id="adress-one" label="Adress" variant="standard"/>
                 <TextField id="PostalNumber" label="Postnummer" variant="standard" />
             </Stack>
 

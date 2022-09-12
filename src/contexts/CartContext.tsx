@@ -6,10 +6,11 @@ import {
   useState,
 } from "react";
 import { CartItem, Product } from "../utils/types";
+import { useSnack } from "./SnackContext";
 
 interface ContextValue {
   cartItems: CartItem[];
-  addCartItem: (product: Product) => void;
+  addCartItem: (product: Product, amount: number) => void;
   removeCartItem: (id: number) => void;
   updateItemQuantity: (id: number, quantity: number) => void;
 }
@@ -41,22 +42,29 @@ function CartProvider({ children }: Props) {
     }
   });
 
+  const { addNewSnack } = useSnack();
+
   const generateCartItemId = (): number => {
     const id = Math.max(...cartItems.map((item) => item.id), 0) + 1;
     return id;
   };
 
-  const addCartItem = (product: Product) => {
+  const addCartItem = (product: Product, amount: number) => {
     const newCartItems = [...cartItems];
     const item = newCartItems.find((item) => item.product.id === product.id);
-    if (item) item.quantity++;
+    if (item) item.quantity += amount;
     else {
       newCartItems.push({
         id: generateCartItemId(),
         product,
-        quantity: 1,
+        quantity: amount,
       });
     }
+
+    addNewSnack(
+      `${amount} ${product.name} har lagts till i kundvagnen`,
+      "success"
+    );
 
     setCartItems(newCartItems);
   };

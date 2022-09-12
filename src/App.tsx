@@ -1,12 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import CartProvider from "./contexts/CartContext";
-import ProductProvider from "./contexts/ProductContext";
 import AdminPage from "./pages/AdminPage";
 import CartPage from "./pages/CartPage";
 import CreatePage from "./pages/CreatePage";
 import EditPage from "./pages/EditPage";
 import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
+import ProductPage from "./pages/ProductPage";
 
 function App() {
   return (
@@ -20,19 +21,13 @@ function App() {
         }
       >
         <Route index element={<HomePage />} />
-        <Route path="/Cart" element={<CartPage />} />
+        <Route path="product/:Id" element={<ProductPage />} />
+        <Route path="*" element={<NotFoundPage />} />
 
         {/* Regular pages go here ^ */}
       </Route>
 
-      <Route
-        path="/admin"
-        element={
-          <ProductProvider>
-            <Layout admin />
-          </ProductProvider>
-        }
-      >
+      <Route path="/admin" element={<Layout admin />}>
         <Route index element={<AdminPage />} />
         <Route path="edit/:Id" element={<EditPage />} />
         <Route path="create" element={<CreatePage />} />

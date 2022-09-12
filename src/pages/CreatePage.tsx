@@ -13,6 +13,7 @@ const CreatePage: FC = () => {
   const handleSubmit = (values: ProductCreate) => {
     //add confirmation that all worked
     addProduct(values);
+
     navigate("/admin");
   };
   return (

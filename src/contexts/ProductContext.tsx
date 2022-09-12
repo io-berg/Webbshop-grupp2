@@ -7,6 +7,7 @@ import {
 } from "react";
 import { data } from "../utils/mockData";
 import { Product, ProductCreate } from "../utils/types";
+import { useSnack } from "./SnackContext";
 
 interface ContextValue {
   products: Product[];
@@ -42,23 +43,31 @@ function ProductProvider({ children }: Props) {
     }
   });
 
+  const { addNewSnack } = useSnack();
+
   const addProduct = (product: ProductCreate) => {
     const newProduct: Product = {
       ...product,
       id: generateProductId(),
       reviews: [],
     };
+
+    addNewSnack(`${product.name} har lagts till.`, "success", 4000);
     setProducts((prevState) => [...prevState, newProduct]);
   };
 
   const removeProduct = (product: Product) => {
     setProducts((prevState) => prevState.filter((p) => p.id !== product.id));
+
+    addNewSnack(`${product.name} har tagits bort`, "success", 4000);
   };
 
   const editProduct = (product: Product) => {
     setProducts((prevState) =>
       prevState.map((p) => (p.id === product.id ? product : p))
     );
+
+    addNewSnack(`${product.name} har updaterats`, "success", 4000);
   };
 
   const generateProductId = () => {

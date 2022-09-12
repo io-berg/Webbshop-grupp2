@@ -23,9 +23,6 @@ const CartIcon = () => {
 
   const style = {
     animation: `${frames} 0.3s ease-in-out`,
-    "&:not(:first-child)": {
-      animation: `${frames} 0.3s ease-in-out`,
-    },
   };
 
   const runAnimation = async () => {
@@ -42,7 +39,10 @@ const CartIcon = () => {
     <IconButton onClick={() => navigate("/cart")}>
       <ShoppingCartIcon sx={{ color: "white" }} />
       <Badge
-        badgeContent={cart.cartItems.length}
+        badgeContent={cart.cartItems.reduce(
+          (acc, item) => acc + item.quantity,
+          0
+        )}
         color="secondary"
         sx={animate ? style : null}
         variant="standard"

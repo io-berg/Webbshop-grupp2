@@ -19,7 +19,7 @@ const HomeCard: FC<Props> = ({ product }) => {
   const cart = useCart();
   const navigate = useNavigate();
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card className="truncate" sx={{ maxWidth: 345 }}>
       <CardActionArea onClick={() => navigate(`/product/${product.id}`)}>
         <CardMedia
           component="img"
@@ -30,20 +30,18 @@ const HomeCard: FC<Props> = ({ product }) => {
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {product.name}
-            <br />
           </Typography>
           <Typography color="text.secondary">
             Pris: {product.price} kr
           </Typography>
           <br />
           <Typography
+            className="text-ellipsis overflow-hidden ..."
             variant="body2"
             color="text.secondary"
             height="60px"
-            overflow="hidden"
-            textOverflow="ellipsis"
           >
-            {product.description}..
+            {product.description}
           </Typography>
         </CardContent>
       </CardActionArea>

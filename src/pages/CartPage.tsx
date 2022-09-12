@@ -14,7 +14,10 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import CartTable from "../components/CartTable";
 
+
+
 const CartPage: FC = () => {
+
   return (
     <Container>
       <NavCrumbs
@@ -25,7 +28,7 @@ const CartPage: FC = () => {
       />
 
       <Box paddingBottom="2rem">
-        <h1>Hello CartPage 🛒 (Under construction)</h1>
+        <h1>Kundvagnen 🛒 (Under construction)</h1>
 
         <div>
           <CartTable></CartTable>
@@ -104,7 +107,7 @@ const CartPage: FC = () => {
           </Stack>
         </Box>
 
-        <Stack spacing={3} direction="row">
+        <Stack spacing={3} direction="row" paddingBottom="2rem">
           <Button variant="contained">Fortsätt till betalning</Button>
           <Button href="/" variant="contained">
             Avbryt beställning

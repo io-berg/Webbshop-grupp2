@@ -7,6 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
+
 function createData(quantity: number, product: string, price: number) {
   return { quantity, product, price };
 }
@@ -44,3 +45,5 @@ export default function CartTable() {
     </TableContainer>
   );
 }
+
+

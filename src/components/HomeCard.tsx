@@ -30,12 +30,14 @@ const HomeCard: FC<Props> = ({ product }) => {
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {product.name}
-            <br />
-            <Typography>Pris: {product.price} kr</Typography>
+          </Typography>
+          <Typography color="text.secondary">
+            Pris: {product.price} kr
           </Typography>
           <br />
-          <Typography variant="body2" color="text.secondary" minHeight="80px">
-            {product.description}
+
+          <Typography variant="body2" color="text.secondary" height="60px">
+            <span className="line-clamp-3">{product.description}</span>
           </Typography>
         </CardContent>
       </CardActionArea>

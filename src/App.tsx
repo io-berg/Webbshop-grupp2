@@ -23,6 +23,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="product/:Id" element={<ProductPage />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="cart" element={<CartPage />} />
 
         {/* Regular pages go here ^ */}
       </Route>

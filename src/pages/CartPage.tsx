@@ -4,15 +4,16 @@ import {
 import { Box } from "@mui/system";
 import { FC } from "react";
 import NavCrumbs from "../components/NavCrumbs";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
 import CartTable from "../components/CartTable";
 import { useCart } from "../contexts/CartContext";
+import CartForm from "../components/CartForm";
+import { useNavigate } from "react-router-dom";
 
 
 
 const CartPage: FC = () => {
   const cart=useCart();
+  const navigate=useNavigate();
 
   return (
     <Container>
@@ -35,17 +36,9 @@ const CartPage: FC = () => {
         <h1>Fyll i dina uppgifter:</h1>
 
         <div>
-
+          <CartForm onSubmit={() => navigate("/")}></CartForm>
         </div>
 
-        
-
-        <Stack spacing={3} direction="row" paddingBottom="2rem">
-          <Button variant="contained">Fortsätt till betalning</Button>
-          <Button href="/" variant="contained">
-            Avbryt beställning
-          </Button>
-        </Stack>
       </Box>
     </Container>
   );

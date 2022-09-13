@@ -7,6 +7,7 @@ import CreatePage from "./pages/CreatePage";
 import EditPage from "./pages/EditPage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import OrderConfirmPage from "./pages/OrderConfirmPage";
 import ProductPage from "./pages/ProductPage";
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
         <Route path="product/:Id" element={<ProductPage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="cart" element={<CartPage />} />
-
+        <Route path="orderconfirmation" element={<OrderConfirmPage />} />
         {/* Regular pages go here ^ */}
       </Route>
 

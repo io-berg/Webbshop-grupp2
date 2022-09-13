@@ -13,6 +13,7 @@ interface ContextValue {
   addCartItem: (product: Product, amount: number) => void;
   removeCartItem: (id: number) => void;
   updateItemQuantity: (id: number, quantity: number) => void;
+  clearCart: () => void;
 }
 
 const CartContext = createContext<ContextValue>({
@@ -24,6 +25,9 @@ const CartContext = createContext<ContextValue>({
     console.warn("CartProvider not found");
   },
   updateItemQuantity: () => {
+    console.warn("CartProvider not found");
+  },
+  clearCart: () => {
     console.warn("CartProvider not found");
   },
 });
@@ -81,13 +85,23 @@ function CartProvider({ children }: Props) {
     setCartItems(newCartItems);
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addCartItem, removeCartItem, updateItemQuantity }}
+      value={{
+        cartItems,
+        addCartItem,
+        removeCartItem,
+        updateItemQuantity,
+        clearCart,
+      }}
     >
       {children}
     </CartContext.Provider>

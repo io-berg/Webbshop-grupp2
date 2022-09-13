@@ -1,45 +1,83 @@
-import {
-  Container,
-} from "@mui/material";
+import { Button, Container, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { FC } from "react";
-import NavCrumbs from "../components/NavCrumbs";
-import CartTable from "../components/CartTable";
-import { useCart } from "../contexts/CartContext";
-import CartForm from "../components/CartForm";
+import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-
+import CartForm from "../components/CartForm";
+import CartTable from "../components/CartTable";
+import NavCrumbs from "../components/NavCrumbs";
+import { useCart } from "../contexts/CartContext";
 
 const CartPage: FC = () => {
-  const cart=useCart();
-  const navigate=useNavigate();
+  const [confirmedCart, setConfirmedCart] = useState(false);
+  const cart = useCart();
+  const navigate = useNavigate();
+
+  const handleCancel = () => {
+    setConfirmedCart(false);
+  };
 
   return (
     <Container>
+      <div className="mt-2" />
       <NavCrumbs
         crumbs={[
           { name: "Home", path: "/" },
           { name: "Cart", path: "/Cart" },
         ]}
       />
+      <Paper
+        sx={{
+          padding: 2,
+        }}
+      >
+        <Box>
+          <Typography variant="h5">Kundvagn</Typography>
+          <CartTable
+            cartItems={cart.cartItems}
+            disableControls={confirmedCart}
+          />
+          <div className="w-full flex justify-end mt-3 items-center gap-4">
+            <Typography
+              alignItems="center"
+              fontSize={18}
+              lineHeight="0"
+              paddingBottom={0}
+            >
+              Totalpris:{" "}
+              {cart.cartItems
+                .reduce(
+                  (acc, item) => acc + item.quantity * item.product.price,
+                  0
+                )
+                .toFixed(2)}
+              kr
+            </Typography>
+            {!confirmedCart && (
+              <Button
+                variant="contained"
+                onClick={() => setConfirmedCart(true)}
+                disabled={cart.cartItems.length === 0}
+              >
+                Bekräfta kundvagn
+              </Button>
+            )}
+          </div>
+        </Box>
 
-      <Box paddingBottom="2rem">
-        <h1>Kundvagnen 🛒 (Under construction)</h1>
+        {confirmedCart && (
+          <Box className="flex justify-center flex-col text-center">
+            <Typography variant="h5">Dina Uppgifter</Typography>
 
-        <div className="flex w-full justify-center">
-          <CartTable cartItems={cart.cartItems}></CartTable>
-        </div>
-      </Box>
-
-      <Box>
-        <h1>Fyll i dina uppgifter:</h1>
-
-        <div className="flex w-full justify-center">
-          <CartForm onSubmit={() => navigate("/orderconfirmation")}></CartForm>
-        </div>
-
-      </Box>
+            <div className="flex w-full justify-center">
+              <CartForm
+                handleSubmit={() => navigate("/orderconfirmation")}
+                handleCancel={handleCancel}
+              />
+            </div>
+          </Box>
+        )}
+      </Paper>
+      <div className="p-4" />
     </Container>
   );
 };

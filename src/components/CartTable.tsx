@@ -1,11 +1,8 @@
-import AddIcon from "@mui/icons-material/Add";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
-import RemoveIcon from "@mui/icons-material/Remove";
-import { Button, ButtonGroup } from "@mui/material";
+import { Button, Input, TableCell } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -23,13 +20,21 @@ const CartTable: FC<props> = ({ cartItems, disableControls }) => {
 
   return (
     <TableContainer component={Paper}>
-      <Table aria-label="simple table">
+      <Table aria-label="simple table" size="small">
         <TableHead>
           <TableRow>
             <TableCell>Produkt</TableCell>
             <TableCell align="right">Pris</TableCell>
-            <TableCell align="center">Antal</TableCell>
-            <TableCell align="right" padding="normal">
+            <TableCell align="center" padding="none">
+              Antal
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{
+                width: "100px",
+              }}
+              size="small"
+            >
               <span className="pr-2">Ta bort</span>
             </TableCell>
           </TableRow>
@@ -43,48 +48,43 @@ const CartTable: FC<props> = ({ cartItems, disableControls }) => {
               <TableCell component="th" scope="row">
                 {row.product.name}
               </TableCell>
+
               <TableCell align="right">
                 {(row.product.price * row.quantity).toFixed(2)}
               </TableCell>
-              <TableCell align="center">
-                <ButtonGroup>
-                  <Button
-                    aria-label="reduce"
-                    disabled={disableControls}
-                    onClick={() => {
-                      cart.updateItemQuantity(
-                        row.id,
-                        Math.max(row.quantity - 1, 1)
-                      );
-                    }}
-                    sx={{
-                      width: "40px",
-                    }}
-                  >
-                    <RemoveIcon fontSize="small" />
-                  </Button>
-                  <Button>{row.quantity}</Button>
-                  <Button
-                    aria-label="increase"
-                    disabled={disableControls}
-                    onClick={() => {
-                      cart.updateItemQuantity(row.id, row.quantity + 1);
-                    }}
-                    sx={{
-                      width: "40px",
-                    }}
-                  >
-                    <AddIcon fontSize="small" />
-                  </Button>
-                </ButtonGroup>
+              <TableCell align="center" padding="none">
+                <Input
+                  type="number"
+                  value={row.quantity}
+                  onChange={(e) => {
+                    if (e.target.value === "") return;
+                    cart.updateItemQuantity(
+                      row.id,
+                      Math.max(parseInt(e.target.value), 1)
+                    );
+                  }}
+                  disabled={disableControls}
+                  sx={{
+                    width: "40px",
+                    padding: "0px",
+                  }}
+                />
               </TableCell>
-
-              <TableCell align="right">
+              <TableCell
+                align="right"
+                sx={{
+                  paddingLeft: "0",
+                }}
+              >
                 <Button
                   disabled={disableControls}
                   color="error"
                   size="small"
                   onClick={() => cart.removeCartItem(row.id)}
+                  sx={{
+                    width: "40px",
+                    padding: 0,
+                  }}
                 >
                   <DeleteForeverOutlinedIcon />
                 </Button>

@@ -186,7 +186,7 @@ const CartForm: FC<Props> = ({ handleSubmit, handleCancel }) => {
             />
           </RadioGroup>
         </FormControl>
-        <div className="flex justify-center gap-5 w-full">
+        <div className="flex justify-center gap-5 w-full mt-3">
           <Button type="submit" variant="contained">
             Fortsätt till betalning
           </Button>

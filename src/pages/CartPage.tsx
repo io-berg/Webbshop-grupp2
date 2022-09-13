@@ -1,4 +1,4 @@
-import { Button, Container, Paper, Typography } from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,25 +18,24 @@ const CartPage: FC = () => {
 
   return (
     <Container>
-      <div className="mt-2" />
-      <NavCrumbs
-        crumbs={[
-          { name: "Home", path: "/" },
-          { name: "Cart", path: "/Cart" },
-        ]}
-      />
-      <Paper
-        sx={{
-          padding: 2,
-        }}
-      >
-        <Box>
-          <Typography variant="h5">Kundvagn</Typography>
+      <div className="flex flex-col justify-center items-center">
+        <Box className="w-full max-w-[800px]">
+          <div className="self-start">
+            <NavCrumbs
+              crumbs={[
+                { name: "Home", path: "/" },
+                { name: "Cart", path: "/Cart" },
+              ]}
+            />
+          </div>
+          <Typography variant="h5" paddingTop={1}>
+            Kundvagn
+          </Typography>
           <CartTable
             cartItems={cart.cartItems}
             disableControls={confirmedCart}
           />
-          <div className="w-full flex justify-end mt-3 items-center gap-4">
+          <div className="w-full flex flex-col justify-end items-center gap-4 p-3 sm:flex-row">
             <Typography
               alignItems="center"
               fontSize={18}
@@ -65,7 +64,7 @@ const CartPage: FC = () => {
         </Box>
 
         {confirmedCart && (
-          <Box className="flex justify-center flex-col text-center">
+          <Box className="flex justify-center flex-col text-center p-4 w-full max-w-[800px]">
             <Typography variant="h5">Dina Uppgifter</Typography>
 
             <div className="flex w-full justify-center">
@@ -76,8 +75,8 @@ const CartPage: FC = () => {
             </div>
           </Box>
         )}
-      </Paper>
-      <div className="p-4" />
+        <div className="p-4" />
+      </div>
     </Container>
   );
 };

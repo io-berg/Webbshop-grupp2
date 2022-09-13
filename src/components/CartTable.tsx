@@ -12,13 +12,13 @@ import { useCart } from "../contexts/CartContext";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
-
+import { FC } from "react";
 
 interface props {
   cartItems:CartItem[];
 }
 
-export default function CartTable({cartItems}: props) {  
+const CartTable:FC<props> = ({cartItems}) => {  
   const cart=useCart();
 
   return (
@@ -87,5 +87,7 @@ export default function CartTable({cartItems}: props) {
     </TableContainer>
   );
 }
+
+export default CartTable;
 
 

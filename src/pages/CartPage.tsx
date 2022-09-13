@@ -13,10 +13,12 @@ import NavCrumbs from "../components/NavCrumbs";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import CartTable from "../components/CartTable";
+import { useCart } from "../contexts/CartContext";
 
 
 
 const CartPage: FC = () => {
+  const cart=useCart();
 
   return (
     <Container>
@@ -31,7 +33,7 @@ const CartPage: FC = () => {
         <h1>Kundvagnen 🛒 (Under construction)</h1>
 
         <div>
-          <CartTable></CartTable>
+          <CartTable cartItems={cart.cartItems}></CartTable>
         </div>
       </Box>
 

@@ -13,7 +13,8 @@ interface ContextValue {
   addCartItem: (product: Product, amount: number) => void;
   removeCartItem: (id: number) => void;
   updateItemQuantity: (id: number, quantity: number) => void;
-  clearCart: () => void;
+  confirmOrder: () => void;
+  confirmedOrderItems: CartItem[];
 }
 
 const CartContext = createContext<ContextValue>({
@@ -27,9 +28,10 @@ const CartContext = createContext<ContextValue>({
   updateItemQuantity: () => {
     console.warn("CartProvider not found");
   },
-  clearCart: () => {
+  confirmOrder: () => {
     console.warn("CartProvider not found");
   },
+  confirmedOrderItems: [],
 });
 
 interface Props {
@@ -45,6 +47,9 @@ function CartProvider({ children }: Props) {
       return [];
     }
   });
+  const [confirmedOrderItems, setConfirmedOrderItems] = useState<CartItem[]>(
+    []
+  );
 
   const { addNewSnack } = useSnack();
 
@@ -85,7 +90,8 @@ function CartProvider({ children }: Props) {
     setCartItems(newCartItems);
   };
 
-  const clearCart = () => {
+  const confirmOrder = () => {
+    setConfirmedOrderItems(cartItems);
     setCartItems([]);
   };
 
@@ -100,7 +106,8 @@ function CartProvider({ children }: Props) {
         addCartItem,
         removeCartItem,
         updateItemQuantity,
-        clearCart,
+        confirmedOrderItems,
+        confirmOrder,
       }}
     >
       {children}

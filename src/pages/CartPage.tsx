@@ -16,6 +16,11 @@ const CartPage: FC = () => {
     setConfirmedCart(false);
   };
 
+  const handleSubmit = () => {
+    cart.confirmOrder();
+    navigate("/orderconfirmation");
+  };
+
   return (
     <Container>
       <div className="flex flex-col justify-center items-center">
@@ -69,7 +74,7 @@ const CartPage: FC = () => {
 
             <div className="flex w-full justify-center">
               <CartForm
-                handleSubmit={() => navigate("/orderconfirmation")}
+                handleSubmit={handleSubmit}
                 handleCancel={handleCancel}
               />
             </div>

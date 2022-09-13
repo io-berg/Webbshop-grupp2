@@ -27,7 +27,7 @@ const CartPage: FC = () => {
       <Box paddingBottom="2rem">
         <h1>Kundvagnen 🛒 (Under construction)</h1>
 
-        <div>
+        <div className="flex w-full justify-center">
           <CartTable cartItems={cart.cartItems}></CartTable>
         </div>
       </Box>
@@ -35,8 +35,8 @@ const CartPage: FC = () => {
       <Box>
         <h1>Fyll i dina uppgifter:</h1>
 
-        <div>
-          <CartForm onSubmit={() => navigate("/")}></CartForm>
+        <div className="flex w-full justify-center">
+          <CartForm onSubmit={() => navigate("/orderconfirmation")}></CartForm>
         </div>
 
       </Box>

@@ -54,7 +54,7 @@ const CartForm: FC<Props> = ({onSubmit}) => {
 <div>
 <form onSubmit={formik.handleSubmit}
         >
-          <Stack spacing={2} direction="row">
+          <Stack spacing={2} direction="row" width="full">
             <TextField 
             id="firstName" 
             label="Förnamn" 

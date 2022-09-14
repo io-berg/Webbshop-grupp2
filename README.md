@@ -37,13 +37,13 @@ En webbshop för blommor med admin sida för att hantera produkter.
 
 ### Byggt Med
 
-- [React] (https://reactjs.org/)
-- [MUI] (https://mui.com/material-ui/getting-started/overview/)
-- [Typescript] (https://www.typescriptlang.org/)
-- [Tailwind] (https://tailwindcss.com/)
-- [Vite] (https://vitejs.dev/)
-- [Formik] (https://formik.org/)
-- [Yup] (https://github.com/jquense/yup)
+- [React](https://reactjs.org/)
+- [MUI](https://mui.com/material-ui/getting-started/overview/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Tailwind](https://tailwindcss.com/)
+- [Vite](https://vitejs.dev/)
+- [Formik](https://formik.org/)
+- [Yup](https://github.com/jquense/yup)
 
 <br/>
 

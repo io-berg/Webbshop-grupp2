@@ -54,7 +54,7 @@ const OrderConfirmPage: FC = () => {
         <Button
           variant="contained"
           color="primary"
-          href="/"
+          onClick={() => navigate("/")}
           sx={{ mt: 2 }}
           size="large"
         >

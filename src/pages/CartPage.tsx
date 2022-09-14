@@ -40,7 +40,7 @@ const CartPage: FC = () => {
             cartItems={cart.cartItems}
             disableControls={confirmedCart}
           />
-          <div className="w-full flex flex-col justify-end items-center gap-4 p-3 sm:flex-row">
+          <div className="w-full flex flex-col justify-end items-center gap-4 p-3 sm:flex-row pt-8">
             <Typography
               alignItems="center"
               fontSize={18}

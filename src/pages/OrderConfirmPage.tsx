@@ -1,10 +1,21 @@
-import { Box, Button, Container } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  List,
+  ListItem,
+  ListItemSecondaryAction,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import NavCrumbs from "../components/NavCrumbs";
 import { useCart } from "../contexts/CartContext";
 
 const OrderConfirmPage: FC = () => {
   const { confirmedOrderItems } = useCart();
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -15,19 +26,38 @@ const OrderConfirmPage: FC = () => {
         ]}
       />
 
-      <Box>
-        <h1>Tack för din beställning! 🌻</h1>
+      <Box className="flex flex-col justify-center items-center w-full">
+        <Typography variant="h5">Tack för din beställning! 🌻</Typography>
 
-        <p>
-          Du har beställt följande produkter:
+        <List className="w-full max-w-[20rem]">
           {confirmedOrderItems.map((item) => (
-            <li key={item.product.id}>
-              {item.product.name} x {item.quantity}
-            </li>
+            <ListItem key={item.id}>
+              <ListItemText
+                primary={item.product.name}
+                secondary={`Antal: ${item.quantity}st`}
+              />
+              <ListItemSecondaryAction>
+                <Typography variant="h6">
+                  {(item.product.price * item.quantity).toFixed(2)}kr
+                </Typography>
+              </ListItemSecondaryAction>
+            </ListItem>
           ))}
-        </p>
-
-        <Button href="/" variant="contained">
+        </List>
+        <Typography variant="h6">
+          Totalt:{" "}
+          {confirmedOrderItems
+            .reduce((acc, item) => acc + item.product.price * item.quantity, 0)
+            .toFixed(2)}
+          kr
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => navigate("/")}
+          sx={{ mt: 2 }}
+          size="large"
+        >
           Tillbaka till startsidan
         </Button>
       </Box>

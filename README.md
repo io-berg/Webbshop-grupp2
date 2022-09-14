@@ -42,7 +42,7 @@ En webbshop för blommor med admin sida för att hantera produkter.
 - [Typescript] (https://www.typescriptlang.org/)
 - [Tailwind] (https://tailwindcss.com/)
 - [Vite] (https://vitejs.dev/)
-- [Formik] (https://formik.org/) 
+- [Formik] (https://formik.org/)
 - [Yup] (https://github.com/jquense/yup)
 
 <br/>

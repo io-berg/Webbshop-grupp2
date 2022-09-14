@@ -37,10 +37,13 @@ En webbshop för blommor med admin sida för att hantera produkter.
 
 ### Byggt Med
 
-- React
-- MUI
-- Typescript
-- Tailwind
+- [React] (https://reactjs.org/)
+- [MUI] (https://mui.com/material-ui/getting-started/overview/)
+- [Typescript] (https://www.typescriptlang.org/)
+- [Tailwind] (https://tailwindcss.com/)
+- [Vite] (https://vitejs.dev/)
+- [Formik] (https://formik.org/) 
+- [Yup] (https://github.com/jquense/yup)
 
 <br/>
 
@@ -75,14 +78,14 @@ Krav för godkänt:
 3. [x] Uppgiften lämnas in i tid!
 4. [x] React, Typescript & ett komponentbibliotek ska används (MUI)
 5. [x] React Router används för navigering
-6. [ ] Formulären vid utcheckningen ska gå att automatiskt fyllas i
-7. [ ] Samtliga fält ska ha valideringsregler
-8. [ ] Hemsidan ska vara fullt responsiv (ner till 360px)
-9. [ ] Mockade produkter ska finnas i en egen fil och vara typade med ett TS interface
-10. [ ] Projektet skall läggas upp på Netlify eller liknande tjänst.
+6. [x] Formulären vid utcheckningen ska gå att automatiskt fyllas i
+7. [x] Samtliga fält ska ha valideringsregler
+8. [x] Hemsidan ska vara fullt responsiv (ner till 360px)
+9. [x] Mockade produkter ska finnas i en egen fil och vara typade med ett TS interface
+10. [x] Projektet skall läggas upp på Netlify eller liknande tjänst.
 
 Krav för väl godkänt:
 
-1. [ ] Alla punkter för godkänt är uppfyllda
-2. [ ] Det finns en admin-sida där man kan ändra, lägga till eller ta bort produkter på sidan
-3. [ ] Samtliga produkter skall vara sparade i localstorage (om localstorage är tom då sidan läses in behöver samtliga fördefinierade produkter sparas där)
+1. [x] Alla punkter för godkänt är uppfyllda
+2. [x] Det finns en admin-sida där man kan ändra, lägga till eller ta bort produkter på sidan
+3. [x] Samtliga produkter skall vara sparade i localstorage (om localstorage är tom då sidan läses in behöver samtliga fördefinierade produkter sparas där)

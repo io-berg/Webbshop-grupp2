@@ -1,46 +1,100 @@
-import * as React from "react";
+import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+import { Button, Input, TableCell } from "@mui/material";
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import { FC } from "react";
+import { useCart } from "../contexts/CartContext";
+import { CartItem } from "../utils/types";
 
-function createData(quantity: number, product: string, price: number) {
-  return { quantity, product, price };
+interface props {
+  cartItems: CartItem[];
+  disableControls: boolean;
 }
 
-const rows = [createData(2, "Magnolia", 75)];
+const CartTable: FC<props> = ({ cartItems, disableControls }) => {
+  const cart = useCart();
 
-export default function CartTable() {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table aria-label="simple table" size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Antal</TableCell>
-            <TableCell align="right">Produkt</TableCell>
+            <TableCell>Produkt</TableCell>
             <TableCell align="right">Pris</TableCell>
-            <TableCell align="right">Redigera antal</TableCell>
-            <TableCell align="right">Ta bort</TableCell>
+            <TableCell align="center" padding="none">
+              Antal
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{
+                width: "100px",
+              }}
+              size="small"
+            >
+              <span className="pr-2">Ta bort</span>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {cartItems.map((row) => (
             <TableRow
-              key={row.product}
+              key={row.product.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.quantity}
+                {row.product.name}
               </TableCell>
-              <TableCell align="right">{row.product}</TableCell>
-              <TableCell align="right">{row.price}</TableCell>
+
+              <TableCell align="right">
+                {(row.product.price * row.quantity).toFixed(2)}
+              </TableCell>
+              <TableCell align="center" padding="none">
+                <Input
+                  type="number"
+                  value={row.quantity}
+                  onChange={(e) => {
+                    if (e.target.value === "") return;
+                    cart.updateItemQuantity(
+                      row.id,
+                      Math.max(parseInt(e.target.value), 1)
+                    );
+                  }}
+                  disabled={disableControls}
+                  sx={{
+                    width: "40px",
+                    padding: "0px",
+                  }}
+                />
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  paddingLeft: "0",
+                }}
+              >
+                <Button
+                  disabled={disableControls}
+                  color="error"
+                  size="small"
+                  onClick={() => cart.removeCartItem(row.id)}
+                  sx={{
+                    width: "40px",
+                    padding: 0,
+                  }}
+                >
+                  <DeleteForeverOutlinedIcon />
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
-}
+};
+
+export default CartTable;

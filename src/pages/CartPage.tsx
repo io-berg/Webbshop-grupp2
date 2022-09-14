@@ -1,116 +1,87 @@
-import {
-  Container,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  TextField,
-} from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { FC } from "react";
-import NavCrumbs from "../components/NavCrumbs";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
+import { FC, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import CartForm from "../components/CartForm";
 import CartTable from "../components/CartTable";
+import NavCrumbs from "../components/NavCrumbs";
+import { useCart } from "../contexts/CartContext";
 
 const CartPage: FC = () => {
+  const [confirmedCart, setConfirmedCart] = useState(false);
+  const cart = useCart();
+  const navigate = useNavigate();
+
+  const handleCancel = () => {
+    setConfirmedCart(false);
+  };
+
+  const handleSubmit = () => {
+    cart.confirmOrder();
+    navigate("/orderconfirmation");
+  };
+
   return (
     <Container>
-      <NavCrumbs
-        crumbs={[
-          { name: "Home", path: "/" },
-          { name: "Cart", path: "/Cart" },
-        ]}
-      />
-
-      <Box paddingBottom="2rem">
-        <h1>Hello CartPage 🛒 (Under construction)</h1>
-
-        <div>
-          <CartTable></CartTable>
-        </div>
-      </Box>
-
-      <Box>
-        <h1>Fyll i dina uppgifter:</h1>
-
-        <Box
-          component="form"
-          sx={{
-            "@ .MuiTextField-root": { m: 1, width: "100%" },
-          }}
-          noValidate
-          autoComplete="off"
-          paddingBottom="2rem"
-          paddingTop="1rem"
-        >
-          <Stack spacing={2} direction="row" display="flex">
-            <TextField id="FirstName" label="Förnamn" variant="standard" />
-            <TextField id="LastName" label="Efternamn" variant="standard" />
-          </Stack>
-
-          <Stack spacing={2} direction="row" display="flex">
-            <TextField
-              id="Phonenumber"
-              label="Mobilnummer"
-              variant="standard"
+      <div className="flex flex-col justify-center items-center">
+        <Box className="w-full max-w-[800px]">
+          <div className="self-start">
+            <NavCrumbs
+              crumbs={[
+                { name: "Home", path: "/" },
+                { name: "Cart", path: "/Cart" },
+              ]}
             />
-            <TextField
-              id="emailadress"
-              label="Epost adress"
-              variant="standard"
-            />
-          </Stack>
-
-          <Stack spacing={2} direction="row" display="flex">
-            <TextField id="adress-one" label="Adress" variant="standard" />
-            <TextField
-              id="PostalNumber"
-              label="Postnummer"
-              variant="standard"
-            />
-          </Stack>
-        </Box>
-
-        <Box paddingBottom="1rem">
-          <Stack spacing={2} direction="row">
-            <FormControl>
-              <FormLabel id="shippingAnddeliveryOptions">
-                Leveransalternativ
-              </FormLabel>
-              <RadioGroup
-                aria-labelledby="shippingAnddeliveryOptions"
-                defaultValue="Gratis"
-                name="shipping-buttons-group"
+          </div>
+          <Typography variant="h5" paddingTop={1}>
+            Kundvagn
+          </Typography>
+          <CartTable
+            cartItems={cart.cartItems}
+            disableControls={confirmedCart}
+          />
+          <div className="w-full flex flex-col justify-end items-center gap-4 p-3 sm:flex-row">
+            <Typography
+              alignItems="center"
+              fontSize={18}
+              lineHeight="0"
+              paddingBottom={0}
+            >
+              Totalpris:{" "}
+              {cart.cartItems
+                .reduce(
+                  (acc, item) => acc + item.quantity * item.product.price,
+                  0
+                )
+                .toFixed(2)}
+              kr
+            </Typography>
+            {!confirmedCart && (
+              <Button
+                variant="contained"
+                onClick={() => setConfirmedCart(true)}
+                disabled={cart.cartItems.length === 0}
               >
-                <FormControlLabel
-                  value="Gratis"
-                  control={<Radio />}
-                  label="Standard - 150 kr, 3-5 dagars leveranstid"
-                />
-                <FormControlLabel
-                  value="Express"
-                  control={<Radio />}
-                  label="Express - 500 kr, 1-2 dagars leveranstid"
-                />
-                <FormControlLabel
-                  value="Hämta"
-                  control={<Radio />}
-                  label="Hämta i butiken - Gratis, hämtas nästföljande dag"
-                />
-              </RadioGroup>
-            </FormControl>
-          </Stack>
+                Bekräfta kundvagn
+              </Button>
+            )}
+          </div>
         </Box>
 
-        <Stack spacing={3} direction="row">
-          <Button variant="contained">Fortsätt till betalning</Button>
-          <Button href="/" variant="contained">
-            Avbryt beställning
-          </Button>
-        </Stack>
-      </Box>
+        {confirmedCart && (
+          <Box className="flex justify-center flex-col text-center p-4 w-full max-w-[800px]">
+            <Typography variant="h5">Dina Uppgifter</Typography>
+
+            <div className="flex w-full justify-center">
+              <CartForm
+                handleSubmit={handleSubmit}
+                handleCancel={handleCancel}
+              />
+            </div>
+          </Box>
+        )}
+        <div className="p-4" />
+      </div>
     </Container>
   );
 };

@@ -45,8 +45,11 @@ const CartTable: FC<props> = ({ cartItems, disableControls }) => {
               key={row.product.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
-                {row.product.name}
+              <TableCell align="left" component="th" scope="row" padding="none">
+                <div className="flex flex-col items-center justift-start sm:flex-row pl-2">
+                  <img src={row.product.imgUrl} alt="" className="w-16" />
+                  {row.product.name}
+                </div>
               </TableCell>
 
               <TableCell align="right">

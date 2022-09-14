@@ -7,6 +7,8 @@
 </div>
 <br />
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7cedcfe7-a4e8-44d5-b3ce-be64573e4076/deploy-status)](https://app.netlify.com/sites/blommor/deploys)
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Innehållsförteckning</summary>

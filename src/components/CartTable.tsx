@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import { Button, Input, TableCell } from "@mui/material";
 import Paper from "@mui/material/Paper";
@@ -58,13 +59,21 @@ const CartTable: FC<props> = ({ cartItems, disableControls }) => {
               <TableCell align="center" padding="none">
                 <Input
                   type="number"
-                  value={row.quantity}
+                  value={row.quantity || ""}
                   onChange={(e) => {
-                    if (e.target.value === "") return;
-                    cart.updateItemQuantity(
-                      row.id,
-                      Math.max(parseInt(e.target.value), 1)
-                    );
+                    if (e.target.value === "" || parseInt(e.target.value) < 1) {
+                      cart.updateItemQuantity(row.id, 0);
+                    } else {
+                      cart.updateItemQuantity(row.id, parseInt(e.target.value));
+                    }
+                  }}
+                  onBlur={(e) => {
+                    if (e.target.value === "" || parseInt(e.target.value) < 1) {
+                      cart.updateItemQuantity(row.id, 1);
+                    }
+                  }}
+                  inputProps={{
+                    min: 1,
                   }}
                   disabled={disableControls}
                   sx={{

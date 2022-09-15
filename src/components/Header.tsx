@@ -1,7 +1,6 @@
 import { AppBar, Container, Toolbar, Typography } from "@mui/material";
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import "../styles/header.css";
 import CartIcon from "./CartIcon";
 
 interface Props {

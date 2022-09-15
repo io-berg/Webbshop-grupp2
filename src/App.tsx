@@ -23,17 +23,15 @@ function App() {
       >
         <Route index element={<HomePage />} />
         <Route path="product/:Id" element={<ProductPage />} />
-        <Route path="*" element={<NotFoundPage />} />
         <Route path="cart" element={<CartPage />} />
         <Route path="orderconfirmation" element={<OrderConfirmPage />} />
-        {/* Regular pages go here ^ */}
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
 
       <Route path="/admin" element={<Layout admin />}>
         <Route index element={<AdminPage />} />
         <Route path="edit/:Id" element={<EditPage />} />
         <Route path="create" element={<CreatePage />} />
-        {/* Admin pages go here ^ */}
       </Route>
     </Routes>
   );

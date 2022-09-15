@@ -5,7 +5,7 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
-  TextField,
+  TextField
 } from "@mui/material";
 import { useFormik } from "formik";
 import { FC } from "react";
@@ -35,8 +35,8 @@ const PersonalDetailsSchema = Yup.object().shape<PersonDetailRecord>({
   adress: Yup.string().min(1).required("Adress krävs"),
   postalNumber: Yup.string()
     .min(1)
+    .matches(/^[0-9]{3} [0-9]{2}$/, "Postnummer måste vara i formatet 123 45")
     .required("Postnummer krävs")
-    .length(5, "Postnummer måste vara 5 tecken långt"),
 });
 
 const CartForm: FC<Props> = ({ handleSubmit, handleCancel }) => {

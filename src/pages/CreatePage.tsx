@@ -11,9 +11,7 @@ const CreatePage: FC = () => {
   const { addProduct } = useProducts();
 
   const handleSubmit = (values: ProductCreate) => {
-    //add confirmation that all worked
     addProduct(values);
-
     navigate("/admin");
   };
   return (

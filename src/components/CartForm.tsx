@@ -31,7 +31,9 @@ const PersonalDetailsSchema = Yup.object().shape<PersonDetailRecord>({
   firstName: Yup.string().min(1).required("Förnamn krävs"),
   lastName: Yup.string().min(1).required("Efternamn krävs"),
   phoneNumber: Yup.number().min(1).required("Telefonnummer krävs"),
-  emailAdress: Yup.string().email("Emailadressen är i fel format").required("Epost krävs"),
+  emailAdress: Yup.string()
+    .email("Emailadressen är i fel format")
+    .required("Epost krävs"),
   adress: Yup.string().min(1).required("Adress krävs"),
   postalNumber: Yup.string()
     .min(1)

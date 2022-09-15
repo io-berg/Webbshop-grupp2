@@ -5,7 +5,7 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
-  TextField,
+  TextField
 } from "@mui/material";
 import { useFormik } from "formik";
 import { FC } from "react";
@@ -30,7 +30,9 @@ type PersonDetailRecord = Record<keyof PersonDetails, Yup.AnySchema>;
 const PersonalDetailsSchema = Yup.object().shape<PersonDetailRecord>({
   firstName: Yup.string().min(1).required("Förnamn krävs"),
   lastName: Yup.string().min(1).required("Efternamn krävs"),
-  phoneNumber: Yup.number().min(1).required("Telefonnummer krävs"),
+  phoneNumber: Yup.string().matches(
+    /^(\+46|0)[0-9]{8,9}$/, "Telefonnummer måste vara i formatet 0701234567 eller +46701234567"
+  ).min(1).required("Telefonnummer krävs"),
   emailAdress: Yup.string().email().required("Epost krävs"),
   adress: Yup.string().min(1).required("Adress krävs"),
   postalNumber: Yup.string()

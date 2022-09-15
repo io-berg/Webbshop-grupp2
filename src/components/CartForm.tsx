@@ -37,8 +37,8 @@ const PersonalDetailsSchema = Yup.object().shape<PersonDetailRecord>({
   adress: Yup.string().min(1).required("Adress krävs"),
   postalNumber: Yup.string()
     .min(1)
-    .required("Postnummer krävs")
-    .length(5, "Postnummer måste vara 5 tecken långt"),
+    .matches(/^[0-9]{3} [0-9]{2}$/, "Postnummer måste vara i formatet 123 45")
+    .required("Postnummer krävs"),
 });
 
 const CartForm: FC<Props> = ({ handleSubmit, handleCancel }) => {
